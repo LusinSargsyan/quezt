@@ -76,7 +76,7 @@ html.is-dark body.page-stage{background:var(--qz-p-neutral-950)}
   .full .qp-tile-card .qp-tile-art{transform:scale(.75);transform-origin:top right}
 }
 /* Embedded in the landing page (?embed): widget fills the frame, no tools */
-html.is-embed body{background:var(--qz-p-neutral-950)}
+html.is-embed,html.is-embed body{background:var(--qz-p-neutral-950);overflow:hidden;scrollbar-width:none}
 html.is-embed .skip{display:none}
 html.is-embed .stage{padding:0;display:block}
 html.is-embed .stage>*{width:100%!important;max-width:none!important;height:100vh!important;border-radius:0!important;box-shadow:none!important}

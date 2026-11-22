@@ -51,8 +51,38 @@
   }
 
   /* ---------- controls mapped to real state (saved like Play mode) ---------- */
+  /* Brand import: Re-import → /api/brand (server reads the homepage once) */
+  async function importBrand(el) {
+    const input = root.querySelector('#url');
+    const url = input ? input.value.trim() : '';
+    if (!url) { toast('Add your website address first, like yourbrand.com'); return; }
+    el.disabled = true; const old = el.textContent; el.textContent = 'Reading…';
+    try {
+      const r = await fetch('/api/brand?url=' + encodeURIComponent(url));
+      let d = {}; try { d = await r.json(); } catch (e) {}
+      if (!r.ok) {
+        toast(r.status === 404 ? 'QZ-BRD-404 Brand import isn’t deployed yet — add api/brand.js to the repo.' : (d.error ? d.error + ' ' : '') + (d.message || 'Couldn’t read that site. Set your brand in Theme studio.'));
+        return;
+      }
+      if (d.font) {
+        const l = document.createElement('link'); l.rel = 'stylesheet';
+        l.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(d.font).replace(/%20/g, '+') + ':wght@400;600;700&display=swap';
+        document.head.appendChild(l);
+      }
+      const props = { site: url, brandName: d.name || d.site, logo: d.logo || '', font: d.font || 'Satoshi' };
+      if (d.brand) props.brand = d.brand;
+      if (d.dark) props.c2 = d.dark;
+      if (d.light) props.c3 = d.light;
+      window.QZ.setMany(props);
+      toast('Imported from ' + d.site + ': ' + [d.brand, d.font].filter(Boolean).join(' · '));
+    } catch (e) {
+      toast('QZ-BRD-003 Couldn’t reach the import service. Check your connection and try again.');
+    } finally { el.disabled = false; el.textContent = old; }
+  }
+
   function mapped(el, text) {
     const t = text.toLowerCase();
+    if (/^re-import$/.test(t)) { importBrand(el); return ''; }
     if (/^numbers only/.test(t)) { set('icons', false); return 'Levels show numbers'; }
     if (/^with icons/.test(t)) { set('icons', true); return 'Levels show icons'; }
     if (/^open rewards/.test(t)) { set('open', true); return ''; }
@@ -83,6 +113,10 @@
     if (m !== null) { if (m) toast(m); return; }
     if (trySelect(el)) return;
     toast('Prototype: “' + (text || 'this') + '” isn’t connected in the MVP demo');
+  });
+
+  root.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && e.target.id === 'url') { e.preventDefault(); const b = Array.from(root.querySelectorAll('button')).find((x) => /re-import/i.test(x.textContent)); if (b) importBrand(b); }
   });
 
   /* brand hex field in Theme studio → live brand + contrast check */

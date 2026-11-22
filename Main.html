@@ -54,15 +54,15 @@
         <div>
           <label class="label" for="url">Website URL</label>
           <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <input class="input" id="url" type="url" value="https://yourbrand.com" style="flex: 1 1 240px; width: auto;">
+            <input class="input" id="url" type="url" value="{{site}}" style="flex: 1 1 240px; width: auto;">
             <button class="btn btn-secondary" type="button">Re-import</button>
           </div>
         </div>
         <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: center; padding: 12px 16px; border-radius: 10px; background: var(--bg-canvas); border: 1px solid var(--border-default);">
-          <div style="display: flex; align-items: center; gap: 12px;"><span class="caption">Logo</span><span class="caption" style="min-width: 64px; height: 36px; padding: 4px 12px; border-radius: 6px; border: 1px dashed var(--border-input); background: var(--bg-surface); display: inline-flex; align-items: center; justify-content: center">[logo]</span></div>
-          <div style="display: flex; align-items: center; gap: 8px;"><span class="caption">Colors</span><span class="swatch" style="background: {{brand}};"></span><span class="swatch" style="background: #18171f;"></span><span class="swatch" style="background: #f7f6fa;"></span></div>
-          <div style="display: flex; align-items: center; gap: 8px;"><span class="caption">Font</span><span style="font-weight: 600;">Satoshi</span></div>
-          <span class="chip chip-live"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Contrast AA</span>
+          <div style="display: flex; align-items: center; gap: 12px;"><span class="caption">Logo</span><span class="caption" style="min-width: 64px; height: 36px; padding: 4px 12px; border-radius: 6px; border: 1px dashed var(--border-input); background: var(--bg-surface); display: inline-flex; align-items: center; justify-content: center"><template data-sc="if" value="{{logo}}"><img src="{{logo}}" alt="{{brandName}} logo" style="max-height: 28px; max-width: 110px; object-fit: contain;" onerror="this.replaceWith('[logo]')"></template><template data-sc="if" value="{{noLogo}}">[logo]</template></span></div>
+          <div style="display: flex; align-items: center; gap: 8px;"><span class="caption">Colors</span><span class="swatch" style="background: {{brand}};"></span><span class="swatch" style="background: {{c2}};"></span><span class="swatch" style="background: {{c3}};"></span></div>
+          <div style="display: flex; align-items: center; gap: 8px;"><span class="caption">Font</span><span style="font-weight: 600;">{{font}}</span></div>
+          <span class="chip {{cCls}}"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="{{cIcon}}"></path></svg>{{cText}}</span>
         </div>
       </div>
 
@@ -98,8 +98,8 @@
     <!-- Live preview -->
     <aside style="flex: 1 1 340px; max-width: 380px; display: flex; flex-direction: column; gap: 12px;" aria-label="Live preview">
       <div style="display: flex; justify-content: space-between; align-items: center;"><span class="caption">LIVE PREVIEW · SAMPLE PLAYER</span><span class="chip chip-test">Test</span></div>
-      <div class="w {{wtheme}}" style="--w-brand: {{brand}}; border-radius: 16px; box-shadow: var(--shadow-lg); padding: 20px; display: flex; flex-direction: column; gap: 16px; border: 1px solid var(--border-default);">
-        <div style="display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 700;">Your Brand Rewards</span><span class="w-pill">1,240 pts</span></div>
+      <div class="w {{wtheme}}" style="--w-brand: {{brand}}; --w-font: {{wfont}}; font-family: {{wfont}}; border-radius: 16px; box-shadow: var(--shadow-lg); padding: 20px; display: flex; flex-direction: column; gap: 16px; border: 1px solid var(--border-default);">
+        <div style="display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 700;">{{brandName}} Rewards</span><span class="w-pill">1,240 pts</span></div>
         <div class="w-card" style="display: flex; flex-direction: column; gap: 8px;">
           <div style="display: flex; justify-content: space-between; align-items: baseline;"><span class="w-title" style="font-size: 24px;">Level 2</span><span class="w-muted" style="font-size: 13px;">240 / 500 XP</span></div>
           <div class="w-bar"><span style="width: 48%;"></span></div>
@@ -116,11 +116,19 @@
   </main>
 </div>
 </template>
-<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"brand":{"editor":"color","default":"#6B3FA0","options":["#6B3FA0","#0F766E","#1D4ED8","#B42318"]},"$preview":{"width":1440,"height":1000}}'>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"site":{"editor":"text","default":"https://yourbrand.com"},"logo":{"editor":"text","default":""},"c2":{"editor":"text","default":"#18171f"},"c3":{"editor":"text","default":"#f7f6fa"},"font":{"editor":"text","default":"Satoshi"},"brandName":{"editor":"text","default":"Your Brand"},"brand":{"editor":"color","default":"#6B3FA0","options":["#6B3FA0","#0F766E","#1D4ED8","#B42318"]},"$preview":{"width":1440,"height":1000}}'>
 class Component extends DCLogic {
   renderVals() {
     const dark = this.props.dark ?? false;
-    return { theme: dark ? 'dark' : '', wtheme: '', brand: this.props.brand ?? '#6B3FA0' };
+    const p = this.props, brand = p.brand ?? '#6B3FA0';
+    const lum = (hex) => { const h = (hex || '#6B3FA0').replace('#', ''); return [0, 2, 4].map((i) => parseInt(h.substr(i, 2), 16) / 255).map((v) => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)).reduce((a, v, i) => a + v * [0.2126, 0.7152, 0.0722][i], 0); };
+    const ratio = Math.round(1.05 / (lum(brand) + 0.05) * 10) / 10, pass = ratio >= 4.5;
+    const font = p.font || 'Satoshi';
+    return { theme: dark ? 'dark' : '', wtheme: '', brand, site: p.site || 'https://yourbrand.com', logo: p.logo || '', noLogo: !p.logo,
+      c2: p.c2 || '#18171f', c3: p.c3 || '#f7f6fa', font, brandName: p.brandName || 'Your Brand',
+      wfont: '"' + font + '", "Satoshi", "Noto Sans", system-ui, sans-serif',
+      cCls: pass ? 'chip-live' : 'chip-err', cText: pass ? 'Contrast AA ' + ratio + ':1' : ratio + ':1 on white — pick a darker shade in Theme studio',
+      cIcon: pass ? 'M5 12l5 5 9-10' : 'M12 8v5M12 16h.01' };
   }
 }
 </script>

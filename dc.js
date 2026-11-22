@@ -108,8 +108,9 @@
     const draw = () => {
       const cur = { ...defaults(schema), ...getProps(schema) };
       panel.innerHTML = '<a class="play-home" href="screens.html">← All screens</a><p class="play-h">Try the states</p>';
-      if (!keys.length) panel.innerHTML += '<p class="play-note">This screen has no switches.</p>';
+      if (!keys.some((k) => ['boolean', 'enum', 'color'].includes(schema[k].editor))) panel.innerHTML += '<p class="play-note">This screen has no switches.</p>';
       for (const k of keys) {
+        if (!['boolean', 'enum', 'color'].includes(schema[k].editor)) continue;
         const s = schema[k], row = document.createElement('div'); row.className = 'play-row';
         const label = k.replace(/([A-Z])/g, ' $1').replace(/^./, c => c.toUpperCase());
         if (s.editor === 'boolean') {
@@ -146,7 +147,7 @@
       const pw = document.querySelector('.play'); if (pw) pw.classList.toggle('dark', !!dark);
       if (redraw) redraw();
     };
-    window.QZ = { set: (k, v) => { setProp(comp.schema, k, v); rerender(); } };
+    window.QZ = { set: (k, v) => { setProp(comp.schema, k, v); rerender(); }, setMany: (o) => { for (const k in o) setProp(comp.schema, k, o[k]); rerender(); } };
     await rerender();
     if (/[?&]embed\b/.test(location.search)) { document.documentElement.classList.add('is-embed'); return; }
     redraw = buildPanel(comp.schema, rerender);

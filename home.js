@@ -66,7 +66,7 @@
         // form-encoded = simple request, no CORS preflight; Make parses it into fields
         const r = await fetch(hook, { method: 'POST', body: new URLSearchParams(entry) });
         if (!r.ok) throw new Error('HTTP ' + r.status);
-        status.textContent = 'Saved. You are on the pilot list — check your inbox.';
+        status.textContent = 'Saved. You are on the pilot list — we will email you.';
       } else {
         status.textContent = 'Saved in this browser. (Make webhook not connected yet.)';
       }

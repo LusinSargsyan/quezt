@@ -51,4 +51,32 @@ html.is-dark body.page-stage{background:var(--qz-p-neutral-950)}
   .full [style*="grid-template-columns: 1fr 1fr"],.full [style*="grid-template-columns: 1.2fr"]{grid-template-columns:1fr!important}
   .play-panel{width:min(260px,calc(100vw - 32px))}
 }
+/* ---------- Phone: player widget ---------- */
+@media (max-width:500px){
+  /* P1–P5 / W1–W5: the widget fills the phone (no frame, no grey margin) */
+  .stage{padding:0;display:block}
+  .stage>*{width:100%!important;max-width:none!important;height:100dvh!important;min-height:0!important;border-radius:0!important;box-shadow:none!important}
+  body.page-stage{background:var(--qz-p-neutral-950)}
+  /* floating tools become small round icons so they don't cover CTAs */
+  .home-link,.play-btn{font-size:0!important;gap:0;width:40px;height:40px;padding:0!important;justify-content:center;opacity:.9}
+  .home-link{right:64px;bottom:12px}
+  .play{right:12px;bottom:12px}
+  .home-link svg,.play-btn svg{width:18px;height:18px}
+}
+@media (max-width:760px){
+  /* W0 Rewards hub: phone layout */
+  .full .qp>header>div:first-child{min-width:0!important;flex:1 1 100%;padding:0!important}
+  .full .qp>header>nav{display:none!important}
+  .full .qp aside[aria-label="Rewards menu"]{order:2;max-width:none!important;flex-basis:100%!important}
+  .full .qp main{flex-basis:100%!important}
+  .full .qp section[aria-labelledby="hero-h"]{padding:24px 24px 72px!important;min-height:0!important;border-radius:24px!important}
+  .full .qp section[aria-labelledby="hero-h"]>div:first-child{border-radius:24px!important}
+  .full #hero-h{font-size:32px!important;line-height:36px!important}
+  .full .qp-orb{transform:scale(.7);bottom:-70px!important}
+  .full .qp section[aria-labelledby="or-h"]{padding-top:48px!important}
+  .full .qp section[aria-labelledby="or-h"]>div{grid-template-columns:1fr 1fr!important}
+  .full .qp-tile-card{min-height:150px!important;padding:16px!important}
+  .full .qp-tile-card .qp-display{font-size:20px!important;line-height:24px!important}
+  .full .qp-tile-card .qp-tile-art{transform:scale(.75);transform-origin:top right}
+}
 @media (prefers-reduced-motion:reduce){*{animation-duration:0ms!important;transition-duration:0ms!important}}

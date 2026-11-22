@@ -11,8 +11,8 @@
   --radius-sm:12px;--radius-md:20px;--radius-lg:32px;--radius-pill:999px;
   --shadow-press:0 3px 0 #8fc91a;--shadow-panel:0 24px 60px rgba(5,3,20,.6);
   --shadow-glow:0 0 0 10px rgba(109,77,255,.18),0 0 48px rgba(109,77,255,.55);
-  --font-display:"Clash Display","Space Grotesk","General Sans",system-ui,sans-serif;
-  --font-body:"Satoshi","Plus Jakarta Sans","Noto Sans","Noto Sans Armenian",system-ui,sans-serif;
+  --font-display:"Clash Display","General Sans",system-ui,sans-serif;
+  --font-body:"Satoshi","Noto Sans","Noto Sans Armenian",system-ui,sans-serif;
 }
 
 /* Quezt Player — component styles. Reads only --qz-w-* tokens, so a customer brand re-skins everything. */

@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   // Screen list
-  fetch('js/pages.json').then(r => r.json()).then(pages => {
+  fetch('pages.json').then(r => r.json()).then(pages => {
     const groups = {
       dash: { el: document.getElementById('g-dash'), test: p => p.w === 1440 && !p.file.startsWith('W') },
       player: { el: document.getElementById('g-player'), test: p => p.file.startsWith('P') || p.file === 'WHub.html' },

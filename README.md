@@ -13,8 +13,8 @@ Built from the Claude Design handoff ([Quezt_Main](https://claude.ai/artifact/UP
 | `Main.html` … `Settings.html` | Dashboard screens 1–8 (+ 4b Levels) |
 | `WHub.html`, `P*.html` | Player widget (Night theme, Quezt Player DS) |
 | `W*.html` | Widget v1 (light theme) |
-| `js/dc.js` | Tiny runtime: renders the Claude Design screens + **Play mode** (dark, brand, states) saved in `localStorage` |
-| `js/home.js` + `js/config.js` | Sign-up form → `localStorage` + Make webhook (Homework 7) |
+| `dc.js` | Tiny runtime: renders the Claude Design screens + **Play mode** (dark, brand, states) saved in `localStorage` |
+| `home.js` + `config.js` | Sign-up form → `localStorage` + Make webhook (Homework 7) |
 | `handoff/` | Original Claude Design files (source of truth) |
 | `tools/build.py` | Rebuilds the pages from `handoff/` → `python3 tools/build.py` |
 | `automation.md` | Make scenario spec + tests + checklist |

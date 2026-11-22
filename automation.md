@@ -7,7 +7,7 @@ Status: **LIVE in Make** (built by Claude via the Make connector, 22 Nov 2026) �
 | Item | Value |
 |---|---|
 | Scenario | `Quezt — pilot sign-up` · id 8739265 · team "My Team" · **active, runs immediately** |
-| Webhook | `quezt-pilot-signup` → `https://hook.eu1.make.com/1b6anyw5d7nd47d0g3ee6yx3klpdu6yj` (in `js/config.js`) |
+| Webhook | `quezt-pilot-signup` → `https://hook.eu1.make.com/1b6anyw5d7nd47d0g3ee6yx3klpdu6yj` (in `config.js`) |
 | Data store | `Quezt pilot list` (id 269227, key = email → no duplicates) |
 | Phase 2 | Gmail + Google Sheets — needs your Google authorization in Make |
 
@@ -35,7 +35,7 @@ Form payload (from `js/home.js`, sent form-encoded so the browser needs no CORS 
 ## Build steps (≈10 min in the browser)
 
 1. make.com → **Create scenario** → add **Webhooks › Custom webhook** → *Add* → name `quezt-pilot` → **Copy address**.
-2. Paste it in `js/config.js` → `makeWebhook: 'https://hook.eu2.make.com/…'` → commit → push (Vercel redeploys).
+2. Paste it in `config.js` → `makeWebhook: 'https://hook.eu2.make.com/…'` → commit → push (Vercel redeploys).
 3. In Make click **Run once**, then submit the form on the live site once → Make shows "Successfully determined" (data structure learned).
 4. Add **Google Sheets › Add a row** → connect your Google account → pick the sheet (create it first with the 7 headers above) → map fields.
 5. Add 2× **Gmail › Send an email** (connect your Gmail) → map `{{1.name}}`, `{{1.email}}`.

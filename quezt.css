@@ -6,8 +6,8 @@
   --accent:#6b3fa0;--accent-hover:#57327f;--accent-pressed:#3a2456;--accent-subtle:#f6f2fb;--on-accent:#ffffff;
   --success:#067647;--warning:#b54708;--danger:#b42318;--on-danger:#ffffff;--focus:#8a5cc4;
   --shadow-sm:0 1px 2px rgba(15,14,23,.06);--shadow-md:0 4px 12px rgba(15,14,23,.08);--shadow-lg:0 12px 32px rgba(15,14,23,.12);
-  --font-display:"Clash Display","Space Grotesk","General Sans","Noto Sans",system-ui,sans-serif;
-  --font-body:"Satoshi","Plus Jakarta Sans","Noto Sans","Noto Sans Armenian",system-ui,sans-serif;
+  --font-display:"Clash Display","General Sans","Noto Sans",system-ui,sans-serif;
+  --font-body:"Satoshi","Noto Sans","Noto Sans Armenian",system-ui,sans-serif;
   --font-mono:ui-monospace,SFMono-Regular,Menlo,monospace;
   font-family:var(--font-body);color:var(--text-primary);background:var(--bg-canvas);
   font-size:14px;line-height:20px;box-sizing:border-box;
@@ -80,8 +80,8 @@ textarea.input{height:auto;padding:10px 12px;resize:vertical}
 /* Player widget — only these 6 semantic tokens are set by the customer (Theme studio) */
 .w{
   --w-brand:#6b3fa0;--w-on-brand:#ffffff;--w-surface:#ffffff;--w-text:#18171f;--w-muted:#5e5b6b;--w-subtle:#eceaf2;--w-radius:10px;
-  --w-font:"Satoshi","Plus Jakarta Sans","Noto Sans","Noto Sans Armenian",system-ui,sans-serif;
-  --w-display:"Clash Display","Space Grotesk","General Sans",system-ui,sans-serif;
+  --w-font:"Satoshi","Noto Sans","Noto Sans Armenian",system-ui,sans-serif;
+  --w-display:"Clash Display","General Sans",system-ui,sans-serif;
   font-family:var(--w-font);color:var(--w-text);background:var(--w-surface);font-size:14px;line-height:20px;box-sizing:border-box;
 }
 .w.dark{--w-surface:#1d1b26;--w-text:#eceaf2;--w-muted:#a3a0b0;--w-subtle:#2a2833}

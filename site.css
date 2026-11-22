@@ -2,7 +2,7 @@
    Colors come from DESIGN.md primitives (--qz-p-*) or semantic tokens in quezt.css. */
 :root{
   --qz-p-neutral-0:#FFFFFF;--qz-p-neutral-100:#ECEAF2;--qz-p-neutral-950:#0F0E17;
-  --qz-p-amethyst-600:#6B3FA0;
+  --qz-p-amethyst-600:#6B3FA0;--qz-p-amethyst-400:#B79CE0;--qz-p-amber-400:#FDB022;
 }
 html,body{margin:0}
 body.page-stage{background:var(--qz-p-neutral-100);min-height:100vh}
@@ -75,4 +75,9 @@ html.is-dark body.page-stage{background:var(--qz-p-neutral-950)}
   .full .qp-tile-card .qp-display{font-size:20px!important;line-height:24px!important}
   .full .qp-tile-card .qp-tile-art{transform:scale(.75);transform-origin:top right}
 }
+/* Embedded in the landing page (?embed): widget fills the frame, no tools */
+html.is-embed body{background:var(--qz-p-neutral-950)}
+html.is-embed .skip{display:none}
+html.is-embed .stage{padding:0;display:block}
+html.is-embed .stage>*{width:100%!important;max-width:none!important;height:100vh!important;border-radius:0!important;box-shadow:none!important}
 @media (prefers-reduced-motion:reduce){*{animation-duration:0ms!important;transition-duration:0ms!important}}

@@ -107,7 +107,7 @@
     btn.onclick = () => { const o = panel.hidden; panel.hidden = !o; btn.setAttribute('aria-expanded', String(o)); };
     const draw = () => {
       const cur = { ...defaults(schema), ...getProps(schema) };
-      panel.innerHTML = '<a class="play-home" href="index.html">← All screens</a><p class="play-h">Try the states</p>';
+      panel.innerHTML = '<a class="play-home" href="screens.html">← All screens</a><p class="play-h">Try the states</p>';
       if (!keys.length) panel.innerHTML += '<p class="play-note">This screen has no switches.</p>';
       for (const k of keys) {
         const s = schema[k], row = document.createElement('div'); row.className = 'play-row';
@@ -148,6 +148,7 @@
     };
     window.QZ = { set: (k, v) => { setProp(comp.schema, k, v); rerender(); } };
     await rerender();
+    if (/[?&]embed\b/.test(location.search)) { document.documentElement.classList.add('is-embed'); return; }
     redraw = buildPanel(comp.schema, rerender);
     document.querySelector('.play').classList.toggle('dark', document.documentElement.classList.contains('is-dark'));
   }

@@ -4,60 +4,188 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quezt — Turn users into players</title>
-<meta name="description" content="Quezt: no-code gamification for business. MVP screens — dashboard with Play mode and the player widget.">
+<meta name="description" content="No-code gamification for any digital product. Missions, badges, levels and leaderboards in your brand — live in minutes.">
 <meta property="og:title" content="Quezt — Turn users into players">
-<meta property="og:description" content="No-code gamification for business: missions, badges, levels, leaderboards.">
+<meta property="og:description" content="No-code gamification: missions, badges, levels, leaderboards. Full branding on every plan.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap">
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&display=swap">
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600&display=swap">
 <link rel="stylesheet" href="quezt.css">
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="landing.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="qz home">
-  <header class="home-top">
+<div class="qz lp">
+
+  <a class="lp-bar" href="#pilot"><span class="chip chip-ai">New</span> Pilot is open: 4 free spots for launch partners <span aria-hidden="true">→</span></a>
+
+  <header class="lp-top">
     <a class="brand" href="index.html" aria-label="Quezt home">
       <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="var(--accent)"></rect><path d="M9 14a5 5 0 1 0 10 0a5 5 0 1 0-10 0M17 17l3 3" stroke="var(--on-accent)" stroke-width="2.2" fill="none" stroke-linecap="round"></path></svg>
-      <span class="display" style="font-size:20px">Quezt</span>
+      <span class="display" style="font-size:22px">Quezt</span>
     </a>
-    <nav aria-label="Page" class="home-nav">
-      <a href="#screens">Screens</a><a href="#pilot">Join the pilot</a>
-      <a class="btn btn-primary btn-sm" href="Main.html">Open the dashboard</a>
+    <nav class="lp-nav" aria-label="Main">
+      <a href="#product">Product</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
     </nav>
+    <div class="lp-top-cta">
+      <a class="btn btn-ghost btn-sm" href="Main.html">Open demo</a>
+      <a class="btn btn-primary btn-sm" href="#pilot">Join the pilot</a>
+    </div>
   </header>
 
   <main id="main">
-    <section class="hero">
-      <span class="chip chip-ai">MVP · Test environment · sample data</span>
-      <h1 class="display hero-h">Turn users into players.</h1>
-      <p class="hero-p muted">No-code gamification for any digital product: missions, badges, levels and leaderboards — set up in minutes, styled in your brand.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="Main.html">Start with onboarding</a>
-        <a class="btn btn-secondary" href="WHub.html">See the player widget</a>
+    <!-- HERO -->
+    <section class="lp-hero">
+      <div class="lp-hero-copy">
+        <span class="chip">No-code gamification · any digital product</span>
+        <h1 class="display lp-h1">Turn users <br>into players.</h1>
+        <p class="lp-lead">Add missions, badges, levels and leaderboards to your site or app. In your brand, live in minutes, no design sprint.</p>
+        <div class="lp-cta">
+          <a class="btn btn-primary lp-btn-lg" href="#pilot">Join the free pilot</a>
+          <a class="btn btn-secondary lp-btn-lg" href="Main.html">Try the live demo</a>
+        </div>
+        <ul class="lp-ticks">
+          <li>Full branding on every plan, incl. Free</li>
+          <li>AI drafts campaigns, you approve</li>
+          <li>Your data is never locked</li>
+        </ul>
       </div>
-      <p class="caption">Tip: every screen has a <b>Play mode</b> button (bottom right) — switch dark mode, brand color and states. Your choices stay after reload.</p>
+      <div class="lp-hero-art" aria-label="Live player widget preview">
+        <div class="lp-phone"><iframe src="PMissions.html?embed" title="Player widget: missions" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="lp-float lp-float-1"><span class="lp-float-ico">⚡</span><span><b>+50 XP</b><br><small>Play 5 rounds · done</small></span></div>
+        <div class="lp-float lp-float-2"><span class="lp-float-ico lp-ico-badge">★</span><span><b>New badge</b><br><small>3-day streak</small></span></div>
+      </div>
     </section>
 
-    <section id="screens" class="block" aria-labelledby="h-screens">
-      <h2 class="h2" id="h-screens">All screens</h2>
-      <h3 class="title">Dashboard — for the business</h3>
-      <div class="grid" id="g-dash"></div>
-      <h3 class="title">Player widget — inside the customer's app</h3>
-      <div class="grid" id="g-player"></div>
-      <h3 class="title">Widget v1 — light theme</h3>
-      <div class="grid" id="g-widget"></div>
-      <h3 class="title">Components</h3>
-      <div class="grid" id="g-comp"></div>
+    <!-- BUILT FOR (honest strip instead of fake logos) -->
+    <section class="lp-strip" aria-label="Built for">
+      <span class="caption">BUILT FOR</span>
+      <span>iGaming</span><span>E-commerce</span><span>SaaS</span><span>Edtech</span><span>Fintech</span><span>Any web or mobile product</span>
     </section>
 
-    <section id="pilot" class="block two" aria-labelledby="h-pilot">
+    <!-- PRODUCT TABS -->
+    <section id="product" class="lp-sec">
+      <span class="caption">WHAT YOU GET</span>
+      <h2 class="display lp-h2">Four mechanics. One widget.</h2>
+      <div class="lp-tabs" role="tablist" aria-label="Mechanics">
+        <button role="tab" aria-selected="true" aria-controls="t-missions" id="tab-missions">Missions</button>
+        <button role="tab" aria-selected="false" aria-controls="t-badges" id="tab-badges">Badges</button>
+        <button role="tab" aria-selected="false" aria-controls="t-levels" id="tab-levels">Levels & XP</button>
+        <button role="tab" aria-selected="false" aria-controls="t-ranks" id="tab-ranks">Leaderboards</button>
+      </div>
+      <div class="lp-panel card" role="tabpanel" id="t-missions" aria-labelledby="tab-missions">
+        <div><h3 class="title">Daily missions that bring players back</h3>
+          <ul><li>Small daily tasks, reset at each player's local time</li><li>Kind streaks with 1 grace day a week</li><li>Progress first: players always see what's next</li></ul>
+          <a class="btn btn-primary" href="PMissions.html">Explore missions</a></div>
+        <div class="lp-shot"><iframe src="PMissions.html?embed" title="Missions screen" loading="lazy" tabindex="-1"></iframe></div>
+      </div>
+      <div class="lp-panel card" role="tabpanel" id="t-badges" aria-labelledby="tab-badges" hidden>
+        <div><h3 class="title">Badges worth collecting</h3>
+          <ul><li>Icon library in 4 styles, one style per campaign</li><li>Locked badges show how to unlock them</li><li>New-badge moment inside the widget</li></ul>
+          <a class="btn btn-primary" href="PBadges.html">Explore badges</a></div>
+        <div class="lp-shot"><iframe src="PBadges.html?embed" title="Badges screen" loading="lazy" tabindex="-1"></iframe></div>
+      </div>
+      <div class="lp-panel card" role="tabpanel" id="t-levels" aria-labelledby="tab-levels" hidden>
+        <div><h3 class="title">Levels with real rewards</h3>
+          <ul><li>XP from server-verified events only</li><li>Each level can unlock a coupon or perk</li><li>Numbers or icons, your choice</li></ul>
+          <a class="btn btn-primary" href="Levels.html">Explore levels</a></div>
+        <div class="lp-shot"><iframe src="WHub.html?embed" title="Rewards hub" loading="lazy" tabindex="-1"></iframe></div>
+      </div>
+      <div class="lp-panel card" role="tabpanel" id="t-ranks" aria-labelledby="tab-ranks" hidden>
+        <div><h3 class="title">Fair leaderboards</h3>
+          <ul><li>Top 10 plus 2 players around you</li><li>Aliases only, players can hide</li><li>iGaming mode: rank with no prizes</li></ul>
+          <a class="btn btn-primary" href="PLeaderboard.html">Explore leaderboards</a></div>
+        <div class="lp-shot"><iframe src="PLeaderboard.html?embed" title="Leaderboard screen" loading="lazy" tabindex="-1"></iframe></div>
+      </div>
+    </section>
+
+    <!-- DIFFERENT -->
+    <section class="lp-sec lp-dark">
+      <div class="lp-inner">
+        <span class="caption">WHY QUEZT</span>
+        <h2 class="display lp-h2">Gamification without the design paywall.</h2>
+        <div class="lp-grid3">
+          <div class="lp-card"><span class="lp-num">01</span><h3 class="title">Fastest setup</h3><p>Paste your URL. We pick up logo, colors and fonts and show your widget before any integration.</p></div>
+          <div class="lp-card"><span class="lp-num">02</span><h3 class="title">Player UI you're proud of</h3><p>Full branding on every plan, incl. Free. Accessible (WCAG 2.1 AA), light and dark, phone-first.</p></div>
+          <div class="lp-card"><span class="lp-num">03</span><h3 class="title">AI drafts, you decide</h3><p>Describe a goal; AI drafts missions, badges and copy. Nothing goes live without your review.</p></div>
+        </div>
+        <a class="btn btn-primary" href="#pilot">Join the free pilot</a>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section id="how" class="lp-sec">
+      <span class="caption">4 SIMPLE STEPS</span>
+      <h2 class="display lp-h2">From URL to live campaign.</h2>
+      <ol class="lp-steps">
+        <li class="card"><span class="lp-num">1</span><h3 class="title">Paste your website</h3><p class="muted">Brand imported, AA contrast checked.</p><a href="Main.html">See onboarding →</a></li>
+        <li class="card"><span class="lp-num">2</span><h3 class="title">Pick a template</h3><p class="muted">Onboarding, daily missions or loyalty. Or describe your goal.</p><a href="Editor.html">See the editor →</a></li>
+        <li class="card"><span class="lp-num">3</span><h3 class="title">Make it yours</h3><p class="muted">Theme studio: color, font, radius, presets. Live preview.</p><a href="Theme.html">See Theme studio →</a></li>
+        <li class="card"><span class="lp-num">4</span><h3 class="title">Connect and launch</h3><p class="muted">Snippet, API or Shopify. Test first, then Production.</p><a href="Settings.html">See install →</a></li>
+      </ol>
+    </section>
+
+    <!-- TRUST -->
+    <section class="lp-sec">
+      <div class="lp-split">
+        <div>
+          <span class="caption">BUILT FOR REAL BUDGETS</span>
+          <h2 class="display lp-h2">Rewards you can trust.</h2>
+          <p class="lp-lead">Every reward is checked on the server, never taken from the browser.</p>
+        </div>
+        <ul class="lp-checks">
+          <li><b>Server-verified, idempotent events</b><span class="muted">No duplicate rewards.</span></li>
+          <li><b>Budgets, caps and cooldowns</b><span class="muted">Enforced at the moment a reward is issued.</span></li>
+          <li><b>Test ≠ Production</b><span class="muted">Test players never touch real balances or billing.</span></li>
+          <li><b>GDPR first</b><span class="muted">External player IDs only, delete + export API, consent.</span></li>
+          <li><b>iGaming-safe</b><span class="muted">XP, badges and operator coupons. Never cash or bonus money.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="lp-sec">
+      <span class="caption">PRICING</span>
+      <h2 class="display lp-h2">Pay by monthly active players.</h2>
+      <p class="muted">Full branding on every plan. Data never locked over a limit. $0.01 per extra MAU.</p>
+      <div class="lp-price">
+        <div class="card"><span class="caption">FREE</span><span class="display lp-amount">$0</span><span class="muted">up to 1,000 MAU</span><a class="btn btn-secondary" href="#pilot">Start free</a></div>
+        <div class="card"><span class="caption">STARTER</span><span class="display lp-amount">$29<small>/mo</small></span><span class="muted">up to 2,500 MAU</span><a class="btn btn-secondary" href="#pilot">Choose Starter</a></div>
+        <div class="card lp-pop"><span class="caption">GROWTH · POPULAR</span><span class="display lp-amount">$149<small>/mo</small></span><span class="muted">up to 10,000 MAU</span><a class="btn btn-primary" href="#pilot">Choose Growth</a></div>
+        <div class="card"><span class="caption">SCALE</span><span class="display lp-amount">$449<small>/mo</small></span><span class="muted">up to 50,000 MAU</span><a class="btn btn-secondary" href="#pilot">Choose Scale</a></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="lp-sec lp-faq">
+      <span class="caption">FAQ</span>
+      <h2 class="display lp-h2">Everything you need to know.</h2>
+      <details class="card"><summary>What is Quezt?</summary><p>A no-code gamification platform. You add missions, badges, levels, XP and leaderboards to your product as a branded widget.</p></details>
+      <details class="card"><summary>Who is it for?</summary><p>Any digital product that wants players to come back: iGaming, e-commerce, SaaS, edtech. Growth, product and developer teams each get their own tools.</p></details>
+      <details class="card"><summary>Do I need a developer?</summary><p>To try it, no: paste your URL and see your widget. To go live, a developer adds one snippet and sends events from your server (or connects Shopify).</p></details>
+      <details class="card"><summary>Can players get cash?</summary><p>No. Quezt gives XP, badges and coupons you issue. Never cash or bonus money.</p></details>
+      <details class="card"><summary>What happens to my data if I go over the limit?</summary><p>Nothing is locked. You keep full access and export; we alert you at 80% and 100%.</p></details>
+      <details class="card"><summary>How does the pilot work?</summary><p>Free and invite-only for 4 launch partners. We help you set up your first campaign. Spots and dates: TBD.</p></details>
+    </section>
+
+    <!-- FINAL CTA + FORM -->
+    <section id="pilot" class="lp-sec lp-final">
+      <div class="lp-final-copy">
+        <h2 class="display lp-h2">Level up your product.</h2>
+        <p class="lp-lead">Join the free pilot. We reply by email.</p>
+        <div class="card qr-card">
+          <h3 class="title">Open on your phone</h3>
+          <div id="qr" class="qr" role="img" aria-label="QR code to this page"></div>
+          <p class="caption mono" id="qr-url"></p>
+        </div>
+      </div>
       <div class="card form-card">
-        <h2 class="h2" id="h-pilot">Join the pilot</h2>
-        <p class="muted">Tell us about your product. We reply by email.</p>
         <form id="waitlist" novalidate>
           <div class="field"><label class="label" for="f-name">Name</label><input class="input" id="f-name" name="name" autocomplete="name" required aria-describedby="err-name"><p class="help err-text" id="err-name" aria-live="polite"></p></div>
           <div class="field"><label class="label" for="f-email">Work email</label><input class="input" id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="err-email"><p class="help err-text" id="err-email" aria-live="polite"></p></div>
@@ -66,23 +194,33 @@
             <select class="input" id="f-product" name="product"><option>E-commerce</option><option>iGaming</option><option>Fintech</option><option>Edtech</option><option>SaaS</option><option>Other</option></select></div>
           <div class="field"><label class="label" for="f-goal">What should players do more? <span class="caption">(optional)</span></label><textarea class="input" id="f-goal" name="goal" rows="3" placeholder="e.g. come back every day, finish their profile"></textarea></div>
           <div class="field"><label class="consent"><input type="checkbox" name="consent" value="yes" aria-describedby="err-consent"> I agree Quezt may email me about the pilot.</label><p class="help err-text" id="err-consent" aria-live="polite"></p></div>
-          <button class="btn btn-primary" type="submit">Join the pilot</button>
+          <button class="btn btn-primary lp-btn-lg" type="submit">Join the pilot</button>
           <p class="help" id="wl-status" role="status" aria-live="polite"></p>
           <p class="caption" id="wl-count"></p>
         </form>
       </div>
-      <div class="card qr-card">
-        <h2 class="title">Open on your phone</h2>
-        <div id="qr" class="qr" role="img" aria-label="QR code to this page"></div>
-        <p class="caption mono" id="qr-url"></p>
-      </div>
     </section>
   </main>
 
-  <footer class="home-foot caption">Quezt MVP · Lusine Sargsyan · AI in Product Design (ACA) · Fonts: <a href="https://www.fontshare.com/">Fontshare</a></footer>
+  <footer class="lp-foot">
+    <div>
+      <span class="display" style="font-size:18px">Quezt</span>
+      <span class="muted">Turn users into players.</span>
+    </div>
+    <nav aria-label="Footer">
+      <a href="screens.html">All MVP screens</a>
+      <a href="Main.html">Dashboard demo</a>
+      <a href="WHub.html">Player widget demo</a>
+      <a href="https://github.com/LusinSargsyan/quezt">GitHub</a>
+    </nav>
+    <span class="caption">Quezt MVP · Lusine Sargsyan · AI in Product Design (ACA) · Fonts: <a href="https://www.fontshare.com/">Fontshare</a></span>
+  </footer>
+
+  <a class="btn btn-primary lp-sticky" href="#pilot">Join the free pilot</a>
 </div>
 <script src="config.js"></script>
 <script src="qrcode.js"></script>
 <script src="home.js"></script>
+<script src="landing.js"></script>
 </body>
 </html>

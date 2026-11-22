@@ -9,7 +9,8 @@ Built from the Claude Design handoff ([Quezt_Main](https://claude.ai/artifact/UP
 
 | Path | What |
 |---|---|
-| `index.html` | Home: all 21 screens, pilot sign-up form, QR code to the live link |
+| `index.html` | Landing page: hero, product tabs, how it works, pricing, FAQ, pilot form, QR |
+| `screens.html` | All 21 MVP screens |
 | `Main.html` … `Settings.html` | Dashboard screens 1–8 (+ 4b Levels) |
 | `WHub.html`, `P*.html` | Player widget (Night theme, Quezt Player DS) |
 | `W*.html` | Widget v1 (light theme) |

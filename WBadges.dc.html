@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Widget — Badges</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="quezt.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="w {{theme}}" style="--w-brand: {{brand}}; width: 400px; height: 760px; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 32px rgba(15,14,23,.12);">
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 16px 16px 8px 20px;">
+    <span style="display: flex; flex-direction: column;"><span style="font-weight: 700; font-size: 16px;">Your Brand Rewards</span><span class="w-muted" style="font-size: 12px;">Lucky Fox 42</span></span>
+    <span style="display: flex; gap: 4px; align-items: center;">
+      <span class="w-pill">1,240 pts</span>
+      <button class="w-icon-btn" type="button" aria-label="Close rewards"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </span>
+  </header>
+  <div style="padding: 12px 16px 0;">
+    <nav class="w-tabs" aria-label="Rewards sections"><a class="w-tab" href="WMissions.dc.html">Missions</a><a class="w-tab on" href="WBadges.dc.html" aria-current="page">Badges</a><a class="w-tab" href="WLeaderboard.dc.html">Ranks</a></nav>
+  </div>
+
+  <div style="flex: 1; overflow: auto; padding: 16px; display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline;"><h2 class="w-title">Badges</h2><span class="w-muted">3 of 8 earned</span></div>
+
+    <!-- New badge -->
+    <div class="w-card" style="display: flex; gap: 16px; align-items: center; border-color: var(--w-brand); background: color-mix(in srgb, var(--w-brand) 6%, var(--w-surface));">
+      <span style="width: 64px; height: 64px; border-radius: 16px; background: var(--w-brand); color: var(--w-on-brand); display: inline-flex; align-items: center; justify-content: center; flex: none;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 4 4 4 8a4 4 0 0 1-8 0c0-2 1-3 1-3 0 2 1.5 3 1.5 3S10 6 12 2zM8 18h8M9 22h6"></path></svg></span>
+      <span style="display: flex; flex-direction: column; gap: 2px;"><span class="w-pill" style="align-self: flex-start;">New</span><b style="font-size: 16px;">3-day streak</b><span class="w-muted" style="font-size: 13px;">Earned today · next: 7-day streak (4 / 7)</span></span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;">
+      <sc-for list="{{badges}}" as="b" hint-placeholder-count="8">
+        <button type="button" class="w-card" title="{{b.tip}}" aria-label="{{b.aria}}" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 12px 8px; cursor: pointer; font: inherit; color: inherit; opacity: {{b.op}};">
+          <span style="width: 48px; height: 48px; border-radius: 12px; background: {{b.bg}}; color: {{b.fg}}; display: inline-flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{b.d}}"></path></svg></span>
+          <span style="font-size: 12px; font-weight: 600; text-align: center; line-height: 16px;">{{b.name}}</span>
+          <span class="w-muted" style="font-size: 11px; text-align: center; line-height: 14px;">{{b.sub}}</span>
+        </button>
+      </sc-for>
+    </div>
+    <p class="w-muted" style="font-size: 12px;">Locked badges show how to unlock them. One icon style per campaign.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#6B3FA0","options":["#6B3FA0","#0F766E","#1D4ED8","#B42318"]},"dark":{"editor":"boolean","default":false},"$preview":{"width":400,"height":760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const trophy = 'M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3';
+    const flame = 'M12 2c1 3 4 4 4 8a4 4 0 0 1-8 0c0-2 1-3 1-3 0 2 1.5 3 1.5 3S10 6 12 2zM8 18h8M9 22h6';
+    const star = 'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z';
+    const compass = 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM15.5 8.5l-2 5-5 2 2-5z';
+    const gift = 'M3 9h18v3H3zM5 12v9h14v-9M12 9v12';
+    const raw = [
+      { name: 'Getting started', d: star, on: true, sub: 'Earned Nov 2' },
+      { name: 'First win', d: trophy, on: true, sub: 'Earned Nov 4' },
+      { name: '3-day streak', d: flame, on: true, sub: 'Earned today' },
+      { name: '7-day streak', d: flame, on: false, sub: '4 / 7 days' },
+      { name: 'Explorer', d: compass, on: false, sub: 'Try 5 games · 2 / 5' },
+      { name: 'Level 3', d: gift, on: false, sub: '210 XP to go' },
+      { name: 'Weekend player', d: star, on: false, sub: 'Play Sat + Sun' },
+      { name: 'Top 10', d: trophy, on: false, sub: 'Weekly rank' }
+    ];
+    return {
+      brand: this.props.brand ?? '#6B3FA0',
+      theme: (this.props.dark ?? false) ? 'dark' : '',
+      badges: raw.map((b) => ({
+        ...b,
+        bg: b.on ? 'color-mix(in srgb, var(--w-brand) 14%, var(--w-surface))' : 'var(--w-subtle)',
+        fg: b.on ? 'var(--w-brand)' : 'var(--w-muted)',
+        op: b.on ? 1 : 0.7,
+        tip: b.on ? b.sub : 'Locked: ' + b.sub,
+        aria: b.name + (b.on ? ', earned' : ', locked, ' + b.sub)
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

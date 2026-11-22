@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Quezt — Onboarding</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="quezt.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600&amp;display=swap">
+<style>body{margin:0}</style>
+</helmet>
+<div class="qz {{theme}}" style="min-height: 1000px; display: flex; flex-direction: column;">
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 16px 32px; border-bottom: 1px solid var(--border-default); background: var(--bg-surface);">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="var(--accent)"></rect><path d="M9 14a5 5 0 1 0 10 0a5 5 0 1 0-10 0M17 17l3 3" stroke="var(--on-accent)" stroke-width="2.2" fill="none" stroke-linecap="round"></path></svg>
+      <span class="display" style="font-size: 20px;">Quezt</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <span class="caption">Setup checklist</span>
+      <span class="chip chip-ai">2 of 5 done</span>
+      <a class="btn btn-ghost btn-sm" href="Overview.dc.html">Skip to dashboard</a>
+    </div>
+  </header>
+
+  <main style="flex: 1; width: 100%; max-width: 1360px; margin: 0 auto; padding: 32px; display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start;">
+    <!-- Checklist -->
+    <aside class="card" style="flex: 1 1 240px; max-width: 280px; display: flex; flex-direction: column; gap: 4px; padding: 16px;" aria-label="Setup steps">
+      <p class="caption" style="padding: 0 8px 8px;">GET LIVE IN 5 STEPS</p>
+      <div style="display: flex; gap: 12px; align-items: center; padding: 10px 8px;"><span class="check" style="background: var(--success); color: var(--bg-surface);"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span><span>Website + brand</span></div>
+      <div style="display: flex; gap: 12px; align-items: center; padding: 10px 8px;"><span class="check" style="background: var(--success); color: var(--bg-surface);"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span><span>Template</span></div>
+      <div style="display: flex; gap: 12px; align-items: center; padding: 10px 8px; border-radius: 10px; background: var(--accent-subtle); color: var(--accent); font-weight: 600;"><span class="check" style="border: 2px solid var(--accent);">3</span><span>Preview + consent</span></div>
+      <div style="display: flex; gap: 12px; align-items: center; padding: 10px 8px;" class="muted"><span class="check" style="border: 2px solid var(--border-input);">4</span><span>Connect (snippet, API, Shopify)</span></div>
+      <div style="display: flex; gap: 12px; align-items: center; padding: 10px 8px;" class="muted"><span class="check" style="border: 2px solid var(--border-input);">5</span><span>Publish to Production</span></div>
+    </aside>
+
+    <!-- Form -->
+    <section style="flex: 999 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <h1 class="h1">Your widget, on your brand</h1>
+        <p class="muted" style="font-size: 16px; line-height: 24px;">We read your homepage once: logo, colors, fonts. Nothing is stored after setup.</p>
+      </div>
+
+      <div class="card" style="display: flex; flex-direction: column; gap: 16px; padding: 20px;">
+        <div>
+          <label class="label" for="url">Website URL</label>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <input class="input" id="url" type="url" value="https://yourbrand.com" style="flex: 1 1 240px; width: auto;">
+            <button class="btn btn-secondary" type="button">Re-import</button>
+          </div>
+        </div>
+        <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: center; padding: 12px 16px; border-radius: 10px; background: var(--bg-canvas); border: 1px solid var(--border-default);">
+          <div style="display: flex; align-items: center; gap: 12px;"><span class="caption">Logo</span><span class="caption" style="min-width: 64px; height: 36px; padding: 4px 12px; border-radius: 6px; border: 1px dashed var(--border-input); background: var(--bg-surface); display: inline-flex; align-items: center; justify-content: center">[logo]</span></div>
+          <div style="display: flex; align-items: center; gap: 8px;"><span class="caption">Colors</span><span class="swatch" style="background: {{brand}};"></span><span class="swatch" style="background: #18171f;"></span><span class="swatch" style="background: #f7f6fa;"></span></div>
+          <div style="display: flex; align-items: center; gap: 8px;"><span class="caption">Font</span><span style="font-weight: 600;">Satoshi</span></div>
+          <span class="chip chip-live"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Contrast AA</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <h2 class="title">Pick a template</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+          <div class="card" style="display: flex; flex-direction: column; gap: 6px;"><span class="title" style="font-size: 16px;">Onboarding</span><span class="muted">Profile → first key action → invite a friend</span><span class="caption">XP per step + "Getting started" badge</span></div>
+          <div class="card" style="display: flex; flex-direction: column; gap: 6px; border: 2px solid var(--accent); background: var(--accent-subtle);"><span style="display: flex; justify-content: space-between; align-items: center;"><span class="title" style="font-size: 16px;">Daily missions</span><span class="chip chip-ai">Suggested</span></span><span class="muted">3 small tasks a day, local-time reset</span><span class="caption">XP + 3/7-day streak badge, 1 grace day</span></div>
+          <div class="card" style="display: flex; flex-direction: column; gap: 6px;"><span class="title" style="font-size: 16px;">Loyalty</span><span class="muted">XP from purchases or key actions</span><span class="caption">Levels L1–L3, each unlocks a coupon</span></div>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; flex-direction: column; gap: 12px; padding: 20px;">
+        <label class="label" for="prompt" style="display: flex; align-items: center; gap: 8px; margin: 0;"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5 13.8 11.3 12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"></path><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"></path></svg>Or describe your goal</label>
+        <textarea class="input" id="prompt" rows="2">Bring players back every day for the first 2 weeks</textarea>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <span class="help" style="margin: 0;">AI drafts events, rules, missions and badges. You review before anything goes live. 18 of 20 AI drafts left this month.</span>
+          <button class="btn btn-secondary btn-sm" type="button">Draft with AI</button>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; gap: 12px; align-items: flex-start;">
+        <input type="checkbox" id="consent" checked="" style="width: 20px; height: 20px; margin: 0; accent-color: var(--accent);">
+        <label for="consent" style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 600;">I confirm we have consent from our players</span><span class="muted">Quezt only stores an external player ID. No names or emails.</span></label>
+      </div>
+
+      <div style="display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap;">
+        <button class="btn btn-ghost" type="button">Back</button>
+        <a class="btn btn-primary" href="Overview.dc.html">Continue to connect</a>
+      </div>
+    </section>
+
+    <!-- Live preview -->
+    <aside style="flex: 1 1 340px; max-width: 380px; display: flex; flex-direction: column; gap: 12px;" aria-label="Live preview">
+      <div style="display: flex; justify-content: space-between; align-items: center;"><span class="caption">LIVE PREVIEW · SAMPLE PLAYER</span><span class="chip chip-test">Test</span></div>
+      <div class="w {{wtheme}}" style="--w-brand: {{brand}}; border-radius: 16px; box-shadow: var(--shadow-lg); padding: 20px; display: flex; flex-direction: column; gap: 16px; border: 1px solid var(--border-default);">
+        <div style="display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 700;">Your Brand Rewards</span><span class="w-pill">1,240 pts</span></div>
+        <div class="w-card" style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline;"><span class="w-title" style="font-size: 24px;">Level 2</span><span class="w-muted" style="font-size: 13px;">240 / 500 XP</span></div>
+          <div class="w-bar"><span style="width: 48%;"></span></div>
+          <span class="w-muted" style="font-size: 13px;">260 XP to Level 3 · unlocks a coupon</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-weight: 700;">Today's missions</span>
+          <div class="w-card" style="display: flex; justify-content: space-between; align-items: center; padding: 12px;"><span>Play 5 rounds</span><span class="w-pill">3 / 5</span></div>
+          <div class="w-card" style="display: flex; justify-content: space-between; align-items: center; padding: 12px;"><span>Try a new game</span><span class="w-pill">+50 XP</span></div>
+        </div>
+      </div>
+      <p class="help">Preview runs before any integration. Edit colors anytime in Theme studio (every plan, incl. Free).</p>
+    </aside>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"brand":{"editor":"color","default":"#6B3FA0","options":["#6B3FA0","#0F766E","#1D4ED8","#B42318"]},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    return { theme: dark ? 'dark' : '', wtheme: '', brand: this.props.brand ?? '#6B3FA0' };
+  }
+}
+</script>
+</body>
+</html>

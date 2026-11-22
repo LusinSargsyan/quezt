@@ -1,0 +1,54 @@
+/* Site shell: Play mode panel, page frames, responsive fixes.
+   Colors come from DESIGN.md primitives (--qz-p-*) or semantic tokens in quezt.css. */
+:root{
+  --qz-p-neutral-0:#FFFFFF;--qz-p-neutral-100:#ECEAF2;--qz-p-neutral-950:#0F0E17;
+  --qz-p-amethyst-600:#6B3FA0;
+}
+html,body{margin:0}
+body.page-stage{background:var(--qz-p-neutral-100);min-height:100vh}
+html.is-dark body.page-stage{background:var(--qz-p-neutral-950)}
+.stage{display:flex;justify-content:center;align-items:flex-start;padding:56px 16px 96px}
+.stage>*{max-width:100%}
+.stage .qz,.stage .qp{max-width:100%}
+
+.skip{position:absolute;left:-999px;top:8px;z-index:100;padding:8px 12px;background:var(--qz-p-neutral-0);color:var(--qz-p-amethyst-600)}
+.skip:focus{left:8px}
+
+.home-link{position:fixed;right:156px;bottom:18px;z-index:50;display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px 0 10px;border-radius:999px;
+  background:var(--qz-p-neutral-0);color:var(--qz-p-neutral-950);font:500 13px/1 "Satoshi","Noto Sans",system-ui,sans-serif;text-decoration:none;box-shadow:0 4px 12px rgb(15 14 23 / .12)}
+.home-link svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.home-link:focus-visible,.play-btn:focus-visible{outline:2px solid var(--qz-p-amethyst-600);outline-offset:2px}
+
+/* Play mode */
+.play{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;flex-direction:column-reverse;align-items:flex-end;gap:8px;background:transparent!important;font-family:var(--font-body)}
+.play-btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:0;border-radius:999px;background:var(--accent);color:var(--on-accent);font:600 14px/1 var(--font-body);cursor:pointer;box-shadow:var(--shadow-lg)}
+.play-btn svg{width:14px;height:14px;fill:currentColor}
+.play-panel{width:260px;max-height:70vh;overflow:auto;background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border-default);border-radius:16px;padding:16px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:12px}
+.play-panel[hidden]{display:none}
+.play-h{margin:0;font:600 16px/1.2 var(--font-display)}
+.play-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px}
+.play-row label{display:flex;align-items:center;gap:8px;width:100%;justify-content:space-between}
+.play-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);order:2}
+.play-row select{height:32px;border:1px solid var(--border-input);border-radius:6px;background:var(--bg-surface);color:var(--text-primary);font:inherit;padding:0 8px}
+.play-sw{display:flex;gap:6px}
+.play-sw button{width:24px;height:24px;border-radius:999px;border:2px solid var(--bg-surface);box-shadow:0 0 0 1px var(--border-input);cursor:pointer}
+.play-sw button[aria-pressed=true]{box-shadow:0 0 0 2px var(--accent)}
+.play-reset{height:32px;border:1px solid var(--border-input);border-radius:10px;background:transparent;color:var(--text-primary);font:500 13px/1 var(--font-body);cursor:pointer}
+.play-note{margin:0;font-size:12px;color:var(--text-secondary)}
+
+/* Responsive: dashboard screens on phones */
+@media (max-width:760px){
+  .full [style*="flex: 1 1 240px"]{flex-basis:100%!important;min-width:0;max-width:100%}
+  .full nav.qz>div{min-width:0;max-width:100%}
+  .full nav.qz{min-height:0!important;height:auto!important;border-right:0!important;border-bottom:1px solid var(--border-default)}
+  .full nav.qz>div:nth-child(3){flex-direction:row!important;overflow-x:auto;gap:4px!important}
+  .full nav.qz>div:nth-child(3) .nav{flex:0 0 auto;white-space:nowrap}
+  .full nav.qz>div:last-child{display:none!important}
+  .full main{padding:16px!important}
+  .full .qz,.full [style*="min-height: 1000px"]{min-height:100vh!important}
+  .full .table-box{overflow-x:auto}
+  .full .h1{font-size:24px;line-height:30px}
+  .full [style*="grid-template-columns: 1fr 1fr"],.full [style*="grid-template-columns: 1.2fr"]{grid-template-columns:1fr!important}
+  .play-panel{width:min(260px,calc(100vw - 32px))}
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:0ms!important;transition-duration:0ms!important}}

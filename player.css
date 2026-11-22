@@ -1,0 +1,103 @@
+/* Quezt Player tokens (Night theme) — mirrors the Quezt Player design system tokens.json v0.2 */
+.qp{
+  --qz-w-ground:#0e0b2b;--qz-w-surface:#18143f;--qz-w-surface-raised:#221d52;--qz-w-line:#2e2869;
+  --qz-w-text:#ffffff;--qz-w-muted:#a9a3d6;--qz-w-disabled:#6f6a9c;
+  --qz-w-brand:#6d4dff;--qz-w-brand-strong:#4f32d6;--qz-w-brand-tint:#2f2775;--qz-w-brand-ink:#a99bff;--qz-w-on-brand:#ffffff;
+  --qz-w-cta:#b8f53c;--qz-w-cta-strong:#8fc91a;--qz-w-on-cta:#12101f;
+  --qz-w-tile-violet:#6d4dff;--qz-w-tile-blue:#2f6fe8;--qz-w-tile-coral:#c93a47;--qz-w-tile-magenta:#a643e8;--qz-w-tile-navy:#2a2470;--qz-w-on-tile:#ffffff;
+  --qz-w-xp:#ffc933;--qz-w-xp-ink:#ffd666;--qz-w-on-xp:#17142b;--qz-w-streak:#ff7a40;--qz-w-streak-ink:#ff9a6b;
+  --qz-w-success:#47cd89;--qz-w-warning:#fdb022;--qz-w-danger:#f97066;
+  --qz-w-rank-gold:#ffc933;--qz-w-rank-silver:#c3c6d4;--qz-w-rank-bronze:#d99a6c;--qz-w-focus:#b8f53c;
+  --radius-sm:12px;--radius-md:20px;--radius-lg:32px;--radius-pill:999px;
+  --shadow-press:0 3px 0 #8fc91a;--shadow-panel:0 24px 60px rgba(5,3,20,.6);
+  --shadow-glow:0 0 0 10px rgba(109,77,255,.18),0 0 48px rgba(109,77,255,.55);
+  --font-display:"Clash Display","Space Grotesk","General Sans",system-ui,sans-serif;
+  --font-body:"Satoshi","Plus Jakarta Sans","Noto Sans","Noto Sans Armenian",system-ui,sans-serif;
+}
+
+/* Quezt Player — component styles. Reads only --qz-w-* tokens, so a customer brand re-skins everything. */
+.qp{font-family:var(--font-body);color:var(--qz-w-text);font-size:15px;line-height:22px;font-weight:500;box-sizing:border-box}
+.qp *,.qp *::before,.qp *::after{box-sizing:border-box}
+.qp h1,.qp h2,.qp h3,.qp p{margin:0}
+.qp a{color:var(--qz-w-brand-ink)}
+.qp-display{font-family:var(--font-display);font-weight:600;letter-spacing:-.02em;text-wrap:balance}
+.qp-num{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.qp-label{font-size:11px;line-height:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--qz-w-muted)}
+.qp-muted{color:var(--qz-w-muted)}
+.qp-row{display:flex;align-items:center;gap:12px}
+
+/* Buttons: pills. CTA = lime, one per screen. Brand = violet. */
+.qp-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 24px;border:0;border-radius:var(--radius-pill);background:var(--qz-w-cta);color:var(--qz-w-on-cta);font:800 15px/20px var(--font-body);box-shadow:var(--shadow-press),0 8px 24px rgba(184,245,60,.28);cursor:pointer;text-decoration:none;white-space:nowrap;transition:transform .12s,box-shadow .12s,background .12s}
+.qp a.qp-btn,.qp a.qp-btn:hover{color:var(--qz-w-on-cta)}
+.qp a.qp-icon-btn,.qp a.qp-icon-btn:hover{color:var(--qz-w-text);text-decoration:none}
+.qp-btn:hover{background:var(--qz-w-cta-strong)}
+.qp-btn:active,.qp-btn.is-pressed{transform:translateY(2px);box-shadow:0 1px 0 var(--qz-w-cta-strong)}
+.qp-btn-brand{background:var(--qz-w-brand);color:var(--qz-w-on-brand);box-shadow:0 3px 0 var(--qz-w-brand-strong)}
+.qp a.qp-btn-brand{color:var(--qz-w-on-brand)}
+.qp-btn-brand:hover{background:var(--qz-w-brand-strong)}
+.qp-btn-secondary{background:var(--qz-w-surface-raised);color:var(--qz-w-text);box-shadow:none}
+.qp a.qp-btn-secondary{color:var(--qz-w-text)}
+.qp-btn-secondary:hover{background:var(--qz-w-line)}
+.qp-btn-ghost{background:transparent;color:var(--qz-w-text);box-shadow:none}
+.qp-btn-ghost:hover{background:var(--qz-w-surface-raised)}
+.qp-btn:disabled,.qp-btn[aria-disabled="true"]{background:var(--qz-w-surface-raised);color:var(--qz-w-disabled);box-shadow:none;cursor:not-allowed;transform:none}
+.qp-btn-sm{height:40px;padding:0 18px;font-size:14px}
+.qp-btn:focus-visible,.qp-tab:focus-visible,.qp-icon-btn:focus-visible,.qp-badge:focus-visible,.qp-nav:focus-visible,.qp-tile-card:focus-visible,.qp-orb:focus-visible{outline:3px solid var(--qz-w-focus);outline-offset:2px}
+.qp-icon-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:44px;height:44px;padding:0 12px;border:0;border-radius:var(--radius-pill);background:var(--qz-w-surface-raised);color:var(--qz-w-text);font:600 14px var(--font-body);cursor:pointer}
+.qp-icon-btn:hover{background:var(--qz-w-line)}
+
+/* The one hero action: a glowing orb */
+.qp-orb{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:150px;height:150px;border-radius:999px;border:0;background:var(--qz-w-brand);color:var(--qz-w-on-brand);box-shadow:var(--shadow-glow);font:700 16px/20px var(--font-body);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+
+/* Card: tinted, no border */
+.qp-card{background:var(--qz-w-surface-raised);border-radius:var(--radius-md);padding:16px}
+
+/* Reward tile: colored block with a big title */
+.qp-tile-card{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;min-height:200px;padding:24px;border-radius:var(--radius-md);color:var(--qz-w-on-tile);text-decoration:none;overflow:hidden}
+.qp a.qp-tile-card{color:var(--qz-w-on-tile)}
+.qp-tile-card .qp-display{font-size:34px;line-height:36px}
+.qp-tile-art{position:absolute;top:18px;right:18px;width:72px;height:72px;border-radius:24px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.16)}
+
+/* Nav */
+.qp-nav{display:flex;align-items:center;gap:12px;height:52px;padding:0 16px;border-radius:var(--radius-sm);background:var(--qz-w-surface-raised);color:var(--qz-w-text);font:700 15px var(--font-body);text-decoration:none}
+.qp a.qp-nav{color:var(--qz-w-text)}
+.qp-nav:hover{background:var(--qz-w-line)}
+.qp-nav.is-on{background:var(--qz-w-brand);color:var(--qz-w-on-brand)}
+
+/* Chips */
+.qp-chip{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 12px;border-radius:var(--radius-pill);font:700 12px/16px var(--font-body);background:var(--qz-w-brand-tint);color:var(--qz-w-text);white-space:nowrap;font-variant-numeric:tabular-nums}
+.qp-chip-xp{background:var(--qz-w-xp);color:var(--qz-w-on-xp)}
+.qp-chip-streak{background:var(--qz-w-streak);color:var(--qz-w-on-xp)}
+.qp-chip-warn{background:transparent;color:var(--qz-w-warning);box-shadow:inset 0 0 0 1.5px var(--qz-w-warning)}
+.qp-chip-done{background:transparent;color:var(--qz-w-success);box-shadow:inset 0 0 0 1.5px var(--qz-w-success)}
+
+/* Filter pills */
+.qp-filters{display:flex;gap:6px;flex-wrap:wrap}
+.qp-filter{display:inline-flex;align-items:center;height:40px;padding:0 16px;border:0;border-radius:var(--radius-pill);background:var(--qz-w-surface-raised);color:var(--qz-w-muted);font:700 14px var(--font-body);cursor:pointer}
+.qp-filter[aria-pressed="true"]{background:var(--qz-w-line);color:var(--qz-w-text)}
+
+/* Progress */
+.qp-bar{height:12px;border-radius:var(--radius-pill);background:var(--qz-w-brand-tint);overflow:hidden}
+.qp-bar>span{display:block;height:100%;border-radius:var(--radius-pill);background:var(--qz-w-cta)}
+.qp-bar-sm{height:8px}
+
+/* Tabs */
+.qp-tabs{display:flex;gap:4px;padding:4px;border-radius:var(--radius-pill);background:var(--qz-w-surface-raised)}
+.qp-tab{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;height:40px;border:0;border-radius:var(--radius-pill);background:transparent;color:var(--qz-w-muted);font:700 14px var(--font-body);cursor:pointer;text-decoration:none}
+.qp-tab[aria-selected="true"],.qp-tab.is-on{background:var(--qz-w-brand);color:var(--qz-w-on-brand)}
+.qp a.qp-tab{color:var(--qz-w-muted)}.qp a.qp-tab.is-on{color:var(--qz-w-on-brand)}
+
+/* Icon tile */
+.qp-tile{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:var(--radius-sm);background:var(--qz-w-brand-tint);color:var(--qz-w-brand-ink);flex:none}
+.qp-ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* Badge */
+.qp-badge{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 8px;border:0;border-radius:var(--radius-md);background:var(--qz-w-surface-raised);color:var(--qz-w-text);font:inherit;cursor:pointer;text-align:center}
+.qp-badge-medal{width:56px;height:56px;display:inline-flex;align-items:center;justify-content:center;clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);background:var(--qz-w-brand);color:var(--qz-w-on-brand)}
+.qp-badge.is-locked .qp-badge-medal{background:var(--qz-w-line);color:var(--qz-w-disabled)}
+.qp-badge.is-locked .qp-badge-name{color:var(--qz-w-muted)}
+
+/* Medal (leaderboard) */
+.qp-medal{width:32px;height:32px;border-radius:var(--radius-pill);display:inline-flex;align-items:center;justify-content:center;font:700 14px var(--font-body);color:var(--qz-w-on-xp);flex:none}
+
+@media (prefers-reduced-motion:reduce){.qp *,.qp-btn{transition:none!important;animation:none!important}}

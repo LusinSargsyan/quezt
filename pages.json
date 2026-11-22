@@ -1,0 +1,149 @@
+[
+ {
+  "file": "Analytics.html",
+  "title": "7 \u00b7 Analytics",
+  "w": 1440,
+  "h": 1000,
+  "page": ""
+ },
+ {
+  "file": "Campaigns.html",
+  "title": "3 \u00b7 Campaigns",
+  "w": 1440,
+  "h": 1000,
+  "page": ""
+ },
+ {
+  "file": "Editor.html",
+  "title": "4 \u00b7 Campaign editor",
+  "w": 1440,
+  "h": 1000,
+  "page": ""
+ },
+ {
+  "file": "Levels.html",
+  "title": "4b \u00b7 Levels (icons on / off)",
+  "w": 1440,
+  "h": 1000,
+  "page": ""
+ },
+ {
+  "file": "Main.html",
+  "title": "1 \u00b7 Onboarding",
+  "w": 1440,
+  "h": 1000,
+  "page": ""
+ },
+ {
+  "file": "Overview.html",
+  "title": "2 \u00b7 Overview",
+  "w": 1440,
+  "h": 1000,
+  "page": ""
+ },
+ {
+  "file": "PBadges.html",
+  "title": "P3 \u00b7 Badges",
+  "w": 400,
+  "h": 760,
+  "page": "page-m30bi4"
+ },
+ {
+  "file": "PGuest.html",
+  "title": "P1 \u00b7 Guest view",
+  "w": 400,
+  "h": 760,
+  "page": "page-m30bi4"
+ },
+ {
+  "file": "PLeaderboard.html",
+  "title": "P4 \u00b7 Leaderboard",
+  "w": 400,
+  "h": 760,
+  "page": "page-m30bi4"
+ },
+ {
+  "file": "PMissions.html",
+  "title": "P2 \u00b7 Missions + toast",
+  "w": 400,
+  "h": 760,
+  "page": "page-m30bi4"
+ },
+ {
+  "file": "PMobile.html",
+  "title": "P5 \u00b7 Mobile bottom sheet",
+  "w": 390,
+  "h": 844,
+  "page": "page-m30bi4"
+ },
+ {
+  "file": "Players.html",
+  "title": "6 \u00b7 Players + support",
+  "w": 1440,
+  "h": 1000,
+  "page": ""
+ },
+ {
+  "file": "Settings.html",
+  "title": "8 \u00b7 Settings + integration health",
+  "w": 1440,
+  "h": 1000,
+  "page": ""
+ },
+ {
+  "file": "Sidebar.html",
+  "title": "Component \u00b7 Sidebar",
+  "w": 240,
+  "h": 1000,
+  "page": ""
+ },
+ {
+  "file": "Theme.html",
+  "title": "5 \u00b7 Theme studio",
+  "w": 1440,
+  "h": 1000,
+  "page": ""
+ },
+ {
+  "file": "WBadges.html",
+  "title": "W3 \u00b7 Badges",
+  "w": 400,
+  "h": 760,
+  "page": ""
+ },
+ {
+  "file": "WGuest.html",
+  "title": "W1 \u00b7 Guest view",
+  "w": 400,
+  "h": 760,
+  "page": ""
+ },
+ {
+  "file": "WHub.html",
+  "title": "W0 \u00b7 Rewards hub (Night)",
+  "w": 1440,
+  "h": 1200,
+  "page": "page-m30bi4"
+ },
+ {
+  "file": "WLeaderboard.html",
+  "title": "W4 \u00b7 Leaderboard",
+  "w": 400,
+  "h": 760,
+  "page": ""
+ },
+ {
+  "file": "WMissions.html",
+  "title": "W2 \u00b7 Missions + toast",
+  "w": 400,
+  "h": 760,
+  "page": ""
+ },
+ {
+  "file": "WMobile.html",
+  "title": "W5 \u00b7 Mobile bottom sheet",
+  "w": 390,
+  "h": 844,
+  "page": ""
+ }
+]

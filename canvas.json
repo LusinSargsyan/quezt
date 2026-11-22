@@ -1,0 +1,275 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Analytics.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "title": "7 · Analytics",
+      "w": 1440,
+      "x": 3040,
+      "y": 1120
+    },
+    "Artboard-tegk.dc.html": {
+      "h": 600,
+      "handmade": true,
+      "page": "page-m30bi4",
+      "title": "Artboard 1",
+      "w": 800,
+      "x": 0,
+      "y": 0
+    },
+    "Campaigns.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "title": "3 · Campaigns",
+      "w": 1440,
+      "x": 3040,
+      "y": 0
+    },
+    "Editor.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "title": "4 · Campaign editor",
+      "w": 1440,
+      "x": 4560,
+      "y": 0
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "title": "1 · Onboarding",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Overview.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "title": "2 · Overview",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "PBadges.dc.html": {
+      "h": 760,
+      "is_interactive": true,
+      "page": "page-m30bi4",
+      "title": "P3 · Badges",
+      "w": 400,
+      "x": 1860,
+      "y": 1600
+    },
+    "PGuest.dc.html": {
+      "h": 760,
+      "is_interactive": true,
+      "page": "page-m30bi4",
+      "title": "P1 · Guest view",
+      "w": 400,
+      "x": 900,
+      "y": 1600
+    },
+    "PLeaderboard.dc.html": {
+      "h": 760,
+      "is_interactive": true,
+      "page": "page-m30bi4",
+      "title": "P4 · Leaderboard",
+      "w": 400,
+      "x": 2340,
+      "y": 1600
+    },
+    "PMissions.dc.html": {
+      "h": 760,
+      "is_interactive": true,
+      "page": "page-m30bi4",
+      "title": "P2 · Missions + toast",
+      "w": 400,
+      "x": 1380,
+      "y": 1600
+    },
+    "PMobile.dc.html": {
+      "h": 844,
+      "page": "page-m30bi4",
+      "title": "P5 · Mobile bottom sheet",
+      "w": 390,
+      "x": 2820,
+      "y": 1600
+    },
+    "Players.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "title": "6 · Players + support",
+      "w": 1440,
+      "x": 1520,
+      "y": 1120
+    },
+    "Settings.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "title": "8 · Settings + integration health",
+      "w": 1440,
+      "x": 4560,
+      "y": 1120
+    },
+    "Sidebar.dc.html": {
+      "h": 1000,
+      "is_interactive": true,
+      "title": "Component · Sidebar",
+      "w": 240,
+      "x": 2390,
+      "y": 2560
+    },
+    "Theme.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "title": "5 · Theme studio",
+      "w": 1440,
+      "x": 0,
+      "y": 1120
+    },
+    "WBadges.dc.html": {
+      "h": 760,
+      "is_interactive": true,
+      "title": "W3 · Badges",
+      "w": 400,
+      "x": 960,
+      "y": 2560
+    },
+    "WGuest.dc.html": {
+      "h": 760,
+      "is_interactive": true,
+      "title": "W1 · Guest view",
+      "w": 400,
+      "x": 0,
+      "y": 2560
+    },
+    "WHub.dc.html": {
+      "expand": "fill",
+      "h": 1200,
+      "is_interactive": true,
+      "page": "page-m30bi4",
+      "title": "W0 · Rewards hub (Night)",
+      "w": 1440,
+      "x": 900,
+      "y": 0
+    },
+    "WLeaderboard.dc.html": {
+      "h": 760,
+      "is_interactive": true,
+      "title": "W4 · Leaderboard",
+      "w": 400,
+      "x": 1440,
+      "y": 2560
+    },
+    "WMissions.dc.html": {
+      "h": 760,
+      "is_interactive": true,
+      "title": "W2 · Missions + toast",
+      "w": 400,
+      "x": 480,
+      "y": 2560
+    },
+    "WMobile.dc.html": {
+      "h": 844,
+      "title": "W5 · Mobile bottom sheet",
+      "w": 390,
+      "x": 1920,
+      "y": 2560
+    },
+    "Levels.dc.html": {
+      "x": 6080,
+      "y": 0,
+      "w": 1440,
+      "h": 1000,
+      "title": "4b · Levels (icons on / off)",
+      "expand": "fill",
+      "is_interactive": true
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-11-16T10:00:00Z",
+    "v": 1
+  },
+  "designSystems": [
+    {
+      "artifact": "https://claude.ai/artifact/AUPhcMqcttmm13vP6MgmNj",
+      "copiedAt": "2026-11-16T10:00:00Z",
+      "namespace": "quezt",
+      "title": "Quezt",
+      "version": "1794663189-9d66"
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "t-dash": {
+      "kind": "title1",
+      "maxW": 6000,
+      "text": "Quezt dashboard (Quezt theme, Amethyst, light/dark)",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t-player": {
+      "kind": "title1",
+      "maxW": 2310,
+      "page": "page-m30bi4",
+      "text": "Player flow · Quezt Player system (Night)",
+      "w": 240,
+      "x": 900,
+      "y": 1300
+    },
+    "t-widget": {
+      "kind": "title1",
+      "maxW": 2630,
+      "text": "Player widget (customer brand)",
+      "w": 240,
+      "x": 0,
+      "y": 2260
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Overview.dc.html",
+    "Campaigns.dc.html",
+    "Editor.dc.html",
+    "Theme.dc.html",
+    "Players.dc.html",
+    "Analytics.dc.html",
+    "Settings.dc.html",
+    "WGuest.dc.html",
+    "WMissions.dc.html",
+    "WBadges.dc.html",
+    "WLeaderboard.dc.html",
+    "WMobile.dc.html",
+    "Sidebar.dc.html",
+    "Artboard-tegk.dc.html",
+    "WHub.dc.html",
+    "PGuest.dc.html",
+    "PMissions.dc.html",
+    "PBadges.dc.html",
+    "PLeaderboard.dc.html",
+    "PMobile.dc.html",
+    "Levels.dc.html"
+  ],
+  "pages": [
+    {
+      "id": "page-1",
+      "name": "Admin"
+    },
+    {
+      "id": "page-m30bi4",
+      "name": "Page 2"
+    }
+  ],
+  "title": "Quezt — MVP Screens"
+}

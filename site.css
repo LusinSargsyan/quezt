@@ -14,16 +14,17 @@ html.is-dark body.page-stage{background:var(--qz-p-neutral-950)}
 .skip{position:absolute;left:-999px;top:8px;z-index:100;padding:8px 12px;background:var(--qz-p-neutral-0);color:var(--qz-p-amethyst-600)}
 .skip:focus{left:8px}
 
-.home-link{position:fixed;right:156px;bottom:18px;z-index:50;display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px 0 10px;border-radius:999px;
   background:var(--qz-p-neutral-0);color:var(--qz-p-neutral-950);font:500 13px/1 "Satoshi","Noto Sans",system-ui,sans-serif;text-decoration:none;box-shadow:0 4px 12px rgb(15 14 23 / .12)}
-.home-link svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.home-link:focus-visible,.play-btn:focus-visible{outline:2px solid var(--qz-p-amethyst-600);outline-offset:2px}
+.play-btn:focus-visible{outline:2px solid var(--qz-p-amethyst-600);outline-offset:2px}
 
-/* Play mode */
-.play{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;flex-direction:column-reverse;align-items:flex-end;gap:8px;background:transparent!important;font-family:var(--font-body)}
-.play-btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:0;border-radius:999px;background:var(--accent);color:var(--on-accent);font:600 14px/1 var(--font-body);cursor:pointer;box-shadow:var(--shadow-lg)}
-.play-btn svg{width:14px;height:14px;fill:currentColor}
-.play-panel{width:260px;max-height:70vh;overflow:auto;background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border-default);border-radius:16px;padding:16px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:12px}
+/* Play mode: slim tab on the right edge, out of the way of the design */
+.play{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:row-reverse;align-items:center;gap:8px;background:transparent!important;font-family:var(--font-body)}
+.play-btn{display:flex;flex-direction:column;align-items:center;gap:6px;width:30px;padding:12px 0;border:0;border-radius:10px 0 0 10px;background:var(--accent);color:var(--on-accent);font:600 11px/1 var(--font-body);letter-spacing:.04em;cursor:pointer;box-shadow:var(--shadow-md);writing-mode:vertical-rl}
+.play-btn svg{width:12px;height:12px;fill:currentColor;writing-mode:horizontal-tb}
+.play-panel{width:260px;max-height:80vh;overflow:auto;background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border-default);border-radius:16px;padding:16px;box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:12px}
+.play-home{font-size:13px;font-weight:600;text-decoration:none}
+.qz-toast{position:fixed;left:50%;top:16px;transform:translate(-50%,-150%);z-index:80;max-width:min(420px,calc(100vw - 32px));padding:10px 16px;border-radius:10px;background:var(--qz-p-neutral-950)!important;color:var(--qz-p-neutral-0);font:500 14px/20px "Satoshi","Noto Sans",system-ui,sans-serif;box-shadow:0 12px 32px rgb(15 14 23 / .24);transition:transform .2s cubic-bezier(.2,0,0,1);min-height:0!important}
+.qz-toast.show{transform:translate(-50%,0)}
 .play-panel[hidden]{display:none}
 .play-h{margin:0;font:600 16px/1.2 var(--font-display)}
 .play-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px}
@@ -49,7 +50,7 @@ html.is-dark body.page-stage{background:var(--qz-p-neutral-950)}
   .full .table-box{overflow-x:auto}
   .full .h1{font-size:24px;line-height:30px}
   .full [style*="grid-template-columns: 1fr 1fr"],.full [style*="grid-template-columns: 1.2fr"]{grid-template-columns:1fr!important}
-  .play-panel{width:min(260px,calc(100vw - 32px))}
+  .play-panel{width:min(260px,calc(100vw - 48px))}
 }
 /* ---------- Phone: player widget ---------- */
 @media (max-width:500px){
@@ -57,11 +58,6 @@ html.is-dark body.page-stage{background:var(--qz-p-neutral-950)}
   .stage{padding:0;display:block}
   .stage>*{width:100%!important;max-width:none!important;height:100dvh!important;min-height:0!important;border-radius:0!important;box-shadow:none!important}
   body.page-stage{background:var(--qz-p-neutral-950)}
-  /* floating tools become small round icons so they don't cover CTAs */
-  .home-link,.play-btn{font-size:0!important;gap:0;width:40px;height:40px;padding:0!important;justify-content:center;opacity:.9}
-  .home-link{right:64px;bottom:12px}
-  .play{right:12px;bottom:12px}
-  .home-link svg,.play-btn svg{width:18px;height:18px}
 }
 @media (max-width:760px){
   /* W0 Rewards hub: phone layout */

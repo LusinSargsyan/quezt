@@ -102,12 +102,12 @@
   function buildPanel(schema, rerender) {
     const keys = Object.keys(schema);
     const wrap = document.createElement('div'); wrap.className = 'qz play';
-    wrap.innerHTML = '<button class="play-btn" aria-expanded="false" aria-controls="play-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Play mode</button><div class="play-panel" id="play-panel" hidden role="region" aria-label="Play mode"></div>';
+    wrap.innerHTML = '<button class="play-btn" aria-expanded="false" aria-controls="play-panel" aria-label="Play mode"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play</span></button><div class="play-panel" id="play-panel" hidden role="region" aria-label="Play mode"></div>';
     const btn = wrap.querySelector('.play-btn'), panel = wrap.querySelector('.play-panel');
     btn.onclick = () => { const o = panel.hidden; panel.hidden = !o; btn.setAttribute('aria-expanded', String(o)); };
     const draw = () => {
       const cur = { ...defaults(schema), ...getProps(schema) };
-      panel.innerHTML = '<p class="play-h">Try the states</p>';
+      panel.innerHTML = '<a class="play-home" href="index.html">← All screens</a><p class="play-h">Try the states</p>';
       if (!keys.length) panel.innerHTML += '<p class="play-note">This screen has no switches.</p>';
       for (const k of keys) {
         const s = schema[k], row = document.createElement('div'); row.className = 'play-row';
@@ -146,6 +146,7 @@
       const pw = document.querySelector('.play'); if (pw) pw.classList.toggle('dark', !!dark);
       if (redraw) redraw();
     };
+    window.QZ = { set: (k, v) => { setProp(comp.schema, k, v); rerender(); } };
     await rerender();
     redraw = buildPanel(comp.schema, rerender);
     document.querySelector('.play').classList.toggle('dark', document.documentElement.classList.contains('is-dark'));

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quezt — Levels</title>
+<meta name="description" content="Quezt — no-code gamification for business. MVP screen: 4b · Levels (icons on / off).">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700,900&f[]=general-sans@500,600&display=swap">
+<link rel="stylesheet" href="css/quezt.css">
+<link rel="stylesheet" href="css/player.css">
+<link rel="stylesheet" href="css/site.css">
+
+</head>
+<body class="page-full">
+<a class="skip" href="#qz-root">Skip to content</a>
+<a class="home-link" href="index.html" aria-label="All Quezt screens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>All screens</a>
+<div id="qz-root" class="full"></div>
+<template id="qz-tpl">
+
+<div class="qz {{theme}}" style="min-height: 1000px; display: flex; flex-wrap: wrap;">
+  <div style="flex: 1 1 240px;"><dc-import name="Sidebar" active="campaigns" dark="{{dark}}" hint-size="100%,1000px"></dc-import></div>
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 24px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <span class="caption"><a href="Editor.html">Daily missions</a> › Levels</span>
+        <div style="display: flex; align-items: center; gap: 12px;"><h1 class="h1">Levels</h1><span class="chip chip-test">Test</span></div>
+      </div>
+      <span class="caption" style="color: var(--success); display: flex; gap: 4px; align-items: center;"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Saved</span>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start;">
+      <!-- Settings -->
+      <section style="flex: 999 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 16px;" aria-label="Level settings">
+        <div class="card" style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px; flex-wrap: wrap;">
+          <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1 1 260px;">
+            <span class="title">Level icons</span>
+            <span class="muted">Show an icon on every level, or keep levels as numbers only. You can change this anytime.</span>
+          </div>
+          <div class="seg" role="radiogroup" aria-label="Level icons">
+            <span role="radio" aria-checked="{{offChecked}}" class="{{offCls}}" style="height: 36px; padding: 0 14px; font-size: 14px;">Numbers only</span>
+            <span role="radio" aria-checked="{{onChecked}}" class="{{onCls}}" style="height: 36px; padding: 0 14px; font-size: 14px;">With icons</span>
+          </div>
+        </div>
+
+        <template data-sc="if" value="{{icons}}" hint-placeholder-val="{{ true }}">
+          <div class="banner banner-info" style="align-items: center;">
+            <svg class="icon icon-20" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--accent);"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v5h1"></path></svg>
+            <span class="muted">Icons use the campaign's icon style (<b style="color: var(--text-primary);">Style A</b>) so levels match your badges. Every level needs an icon while this is on.</span>
+          </div>
+        </template>
+
+        <div class="card" style="padding: 0;">
+          <div class="table-box"><table class="table">
+            <thead><tr><th>Level</th><template data-sc="if" value="{{icons}}" hint-placeholder-val="{{ true }}"><th>Icon</th></template><th>Name</th><th>XP needed</th><th>Unlocks</th></tr></thead>
+            <tbody>
+              <template data-sc="for" list="{{levels}}" as="lv" hint-placeholder-count="3">
+                <tr>
+                  <td style="font-weight: 700;">{{lv.n}}</td>
+                  <template data-sc="if" value="{{icons}}" hint-placeholder-val="{{ true }}">
+                    <td>
+                      <button class="btn btn-secondary btn-sm" type="button" aria-label="Change icon for {{lv.name}}" style="gap: 10px; padding: 0 10px 0 6px;">
+                        <span style="width: 24px; height: 24px; border-radius: 6px; background: var(--accent-subtle); color: var(--accent); display: inline-flex; align-items: center; justify-content: center;"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="{{lv.d}}"></path></svg></span>
+                        Change
+                      </button>
+                    </td>
+                  </template>
+                  <td><input class="input" value="{{lv.name}}" aria-label="Name for level {{lv.n}}" style="height: 36px; max-width: 180px;"></td>
+                  <td style="font-variant-numeric: tabular-nums;">{{lv.xp}}</td>
+                  <td class="muted">{{lv.unlock}}</td>
+                </tr>
+              </template>
+            </tbody>
+          </table></div>
+        </div>
+
+        <template data-sc="if" value="{{icons}}" hint-placeholder-val="{{ true }}">
+          <div class="card" style="display: flex; flex-direction: column; gap: 12px; padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;"><span class="title" style="font-size: 16px;">Pick an icon for Level 2 · Silver</span><button class="btn btn-ghost btn-sm" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5 13.8 11.3 12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"></path></svg>Suggest with AI</button></div>
+            <div role="listbox" aria-label="Level icons" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 8px;">
+              <template data-sc="for" list="{{library}}" as="ic" hint-placeholder-count="10">
+                <span role="option" aria-selected="{{ic.sel}}" aria-label="{{ic.label}}" style="height: 52px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; background: {{ic.bg}}; color: {{ic.fg}}; box-shadow: {{ic.ring}};"><svg class="icon icon-20" viewBox="0 0 24 24" aria-hidden="true"><path d="{{ic.d}}"></path></svg></span>
+              </template>
+            </div>
+            <span class="help" style="margin: 0;">From the Quezt icon library, recolored to your brand. Or upload your own (SVG, square). Every plan, incl. Free.</span>
+          </div>
+        </template>
+      </section>
+
+      <!-- Player preview -->
+      <section style="flex: 1 1 360px; max-width: 420px; display: flex; flex-direction: column; gap: 12px;" aria-label="Player preview">
+        <div style="display: flex; justify-content: space-between; align-items: center;"><span class="caption">PLAYER PREVIEW · SAMPLE PLAYER</span><span class="chip chip-test">Test</span></div>
+        <div class="qp" style="background: var(--qz-w-surface); border-radius: 28px; padding: 16px; display: flex; flex-direction: column; gap: 12px; box-shadow: var(--shadow-panel);">
+          <section style="background: var(--qz-w-brand); color: var(--qz-w-on-brand); border-radius: 24px; padding: 18px; display: flex; gap: 16px; align-items: center;" aria-label="Level 2 Silver, 290 of 500 XP">
+            <span style="position: relative; width: 72px; height: 72px; flex: none;">
+              <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true" style="position: absolute; inset: 0;">
+                <circle cx="36" cy="36" r="30" fill="none" stroke="#ffffff" stroke-opacity=".22" stroke-width="8"></circle>
+                <circle cx="36" cy="36" r="30" fill="none" stroke="var(--qz-w-cta)" stroke-width="8" stroke-linecap="round" stroke-dasharray="109 188.5" transform="rotate(-90 36 36)"></circle>
+              </svg>
+              <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+                <template data-sc="if" value="{{icons}}" hint-placeholder-val="{{ true }}"><svg class="qp-ico" viewBox="0 0 24 24" aria-hidden="true" style="width: 28px; height: 28px;"><path d="{{l2icon}}"></path></svg></template>
+                <template data-sc="if" value="{{numbers}}" hint-placeholder-val="{{ false }}"><span class="qp-num" style="font-size: 26px;">2</span></template>
+              </span>
+            </span>
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 700; opacity: .9;">Level 2 · Silver</span><span class="qp-num" style="font-size: 26px; line-height: 30px;">290 / 500 XP</span><span style="opacity: .9;">210 XP to Gold → 10% coupon</span></span>
+          </section>
+          <div style="display: flex; gap: 8px;">
+            <template data-sc="for" list="{{levels}}" as="lv" hint-placeholder-count="3">
+              <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 6px; border-radius: 16px; background: var(--qz-w-surface-raised); opacity: {{lv.op}};">
+                <span class="qp-badge-medal" style="width: 44px; height: 44px; background: {{lv.bg}}; color: {{lv.fg}};">
+                  <template data-sc="if" value="{{icons}}" hint-placeholder-val="{{ true }}"><svg class="qp-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="{{lv.d}}"></path></svg></template>
+                  <template data-sc="if" value="{{numbers}}" hint-placeholder-val="{{ false }}"><span style="font-weight: 800;">{{lv.n}}</span></template>
+                </span>
+                <span style="font-size: 12px; font-weight: 700;">{{lv.name}}</span>
+              </div>
+            </template>
+          </div>
+        </div>
+        <p class="help" style="margin: 0;">Numbers only: the ring shows the level number. With icons: the icon replaces the number, and the level number stays in the text for screen readers.</p>
+      </section>
+    </div>
+  </main>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"icons":{"editor":"boolean","default":true},"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const icons = this.props.icons ?? true;
+    const dark = this.props.dark ?? false;
+    const sprout = 'M12 21v-9M12 12C12 8 9 5 4 5c0 4 3 7 8 7zM12 14c0-3 2-6 7-6 0 3-2 6-7 6z';
+    const star = 'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z';
+    const crown = 'M3 7l4 4 5-7 5 7 4-4-2 12H5z';
+    const shield = 'M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z';
+    const gem = 'M6 3h12l3 6-9 12L3 9zM3 9h18M9 3l3 18 3-18';
+    const bolt = 'M13 2L4 14h7l-1 8 9-12h-7z';
+    const flame = 'M12 3c1 3 4 4 4 8a4 4 0 0 1-8 0c0-2 1-3 1-3 0 2 1.5 3 1.5 3S10 7 12 3z';
+    const trophy = 'M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z';
+    const rocket = 'M5 19l3-3M14 4c4 0 6 2 6 6l-7 7-6-6zM9 11l-4 1 2-4h4M13 15l-1 4 4-2v-4';
+    const heart = 'M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z';
+    const lib = [['Sprout', sprout], ['Star', star], ['Crown', crown], ['Shield', shield], ['Gem', gem], ['Bolt', bolt], ['Flame', flame], ['Trophy', trophy], ['Rocket', rocket], ['Heart', heart]];
+    const levels = [
+      { n: 1, name: 'Bronze', xp: '0', unlock: 'Getting started badge', d: sprout, reached: true },
+      { n: 2, name: 'Silver', xp: '100', unlock: '+50 XP bonus mission', d: star, reached: true },
+      { n: 3, name: 'Gold', xp: '500', unlock: '10% coupon', d: crown, reached: false }
+    ];
+    return {
+      icons, numbers: !icons, dark, theme: dark ? 'dark' : '',
+      onCls: icons ? 'on' : '', offCls: icons ? '' : 'on',
+      onChecked: icons ? 'true' : 'false', offChecked: icons ? 'false' : 'true',
+      l2icon: star,
+      levels: levels.map((l) => ({ ...l, bg: l.reached ? 'var(--qz-w-brand)' : 'var(--qz-w-line)', fg: l.reached ? 'var(--qz-w-on-brand)' : 'var(--qz-w-disabled)', op: l.reached ? 1 : 0.85 })),
+      library: lib.map(([label, d]) => {
+        const sel = label === 'Star';
+        return { label, d, sel: sel ? 'true' : 'false', bg: sel ? 'var(--accent-subtle)' : 'var(--bg-canvas)', fg: sel ? 'var(--accent)' : 'var(--text-secondary)', ring: sel ? 'inset 0 0 0 2px var(--accent)' : 'inset 0 0 0 1px var(--border-default)' };
+      })
+    };
+  }
+}
+</script>
+<script src="js/dc.js"></script>
+</body>
+</html>

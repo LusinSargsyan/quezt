@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Widget — Leaderboard</title>
+<meta name="description" content="Quezt — no-code gamification for business. MVP screen: W4 · Leaderboard.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700,900&f[]=general-sans@500,600&display=swap">
+<link rel="stylesheet" href="css/quezt.css">
+<link rel="stylesheet" href="css/site.css">
+
+</head>
+<body class="page-stage">
+<a class="skip" href="#qz-root">Skip to content</a>
+<a class="home-link" href="index.html" aria-label="All Quezt screens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>All screens</a>
+<div id="qz-root" class="stage"></div>
+<template id="qz-tpl">
+
+<div class="w {{theme}}" style="--w-brand: {{brand}}; width: 400px; height: 760px; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 32px rgba(15,14,23,.12);">
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 16px 16px 8px 20px;">
+    <span style="display: flex; flex-direction: column;"><span style="font-weight: 700; font-size: 16px;">Your Brand Rewards</span><span class="w-muted" style="font-size: 12px;">Lucky Fox 42</span></span>
+    <span style="display: flex; gap: 4px; align-items: center;">
+      <span class="w-pill">1,240 pts</span>
+      <button class="w-icon-btn" type="button" aria-label="Close rewards"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </span>
+  </header>
+  <div style="padding: 12px 16px 0;">
+    <nav class="w-tabs" aria-label="Rewards sections"><a class="w-tab" href="WMissions.html">Missions</a><a class="w-tab" href="WBadges.html">Badges</a><a class="w-tab on" href="WLeaderboard.html" aria-current="page">Ranks</a></nav>
+  </div>
+
+  <div style="flex: 1; overflow: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline;"><h2 class="w-title">This week</h2><span class="w-muted" style="font-size: 13px;">Resets Monday 00:00</span></div>
+
+    <div class="w-card" style="padding: 4px 0;">
+      <template data-sc="for" list="{{top}}" as="r" hint-placeholder-count="3">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px;">
+          <span style="width: 28px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; background: color-mix(in srgb, var(--w-brand) 14%, var(--w-surface)); color: var(--w-brand);">{{r.rank}}</span>
+          <span style="flex: 1; font-weight: 600;">{{r.name}}</span>
+          <span class="w-muted">{{r.xp}} XP</span>
+        </div>
+      </template>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px;" class="w-muted"><span style="flex: 1; height: 1px; background: var(--w-subtle);"></span><span style="font-size: 12px; font-weight: 600;">AROUND YOU</span><span style="flex: 1; height: 1px; background: var(--w-subtle);"></span></div>
+
+    <div class="w-card" style="padding: 4px 0;">
+      <template data-sc="for" list="{{near}}" as="r" hint-placeholder-count="5">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: {{r.bg}}; font-weight: {{r.fw}};">
+          <span style="width: 28px; text-align: center; font-size: 13px;" class="w-muted">{{r.rank}}</span>
+          <span style="flex: 1;">{{r.name}}</span>
+          <span>{{r.xp}} XP</span>
+        </div>
+      </template>
+    </div>
+
+    <div class="w-card" style="display: flex; flex-direction: column; gap: 6px;">
+      <b>40 XP to pass Swift Lynx 18</b>
+      <span class="w-muted" style="font-size: 13px;">Finish "Win 2 rounds" (+80 XP) to move up to #13.</span>
+    </div>
+
+    <p class="w-muted" style="font-size: 12px; line-height: 16px;">Only aliases are shown. Top 10 earn a "Top 10" badge (no prizes for rank). <a href="#" style="text-decoration: underline;">Hide me from the leaderboard</a></p>
+  </div>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#6B3FA0","options":["#6B3FA0","#0F766E","#1D4ED8","#B42318"]},"dark":{"editor":"boolean","default":false},"$preview":{"width":400,"height":760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const near = [
+      { rank: 12, name: 'Calm Heron 5', xp: '1,410' },
+      { rank: 13, name: 'Swift Lynx 18', xp: '1,280' },
+      { rank: 14, name: 'You · Lucky Fox 42', xp: '1,240', me: true },
+      { rank: 15, name: 'Quiet Bear 3', xp: '1,195' },
+      { rank: 16, name: 'Green Moth 90', xp: '1,150' }
+    ];
+    return {
+      brand: this.props.brand ?? '#6B3FA0',
+      theme: (this.props.dark ?? false) ? 'dark' : '',
+      top: [
+        { rank: 1, name: 'Red Kite 61', xp: '3,920' },
+        { rank: 2, name: 'Blue Owl 7', xp: '3,610' },
+        { rank: 3, name: 'Night Fox 11', xp: '3,355' }
+      ],
+      near: near.map((r) => ({ ...r, bg: r.me ? 'color-mix(in srgb, var(--w-brand) 10%, var(--w-surface))' : 'transparent', fw: r.me ? 700 : 400 }))
+    };
+  }
+}
+</script>
+<script src="js/dc.js"></script>
+</body>
+</html>

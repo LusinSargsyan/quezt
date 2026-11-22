@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Widget — Missions</title>
+<meta name="description" content="Quezt — no-code gamification for business. MVP screen: W2 · Missions + toast.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700,900&f[]=general-sans@500,600&display=swap">
+<link rel="stylesheet" href="css/quezt.css">
+<link rel="stylesheet" href="css/site.css">
+
+</head>
+<body class="page-stage">
+<a class="skip" href="#qz-root">Skip to content</a>
+<a class="home-link" href="index.html" aria-label="All Quezt screens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>All screens</a>
+<div id="qz-root" class="stage"></div>
+<template id="qz-tpl">
+
+<div class="w {{theme}}" style="--w-brand: {{brand}}; width: 400px; height: 760px; display: flex; flex-direction: column; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 32px rgba(15,14,23,.12); position: relative;">
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 16px 16px 8px 20px;">
+    <span style="display: flex; flex-direction: column;"><span style="font-weight: 700; font-size: 16px;">Your Brand Rewards</span><span class="w-muted" style="font-size: 12px;">Lucky Fox 42</span></span>
+    <span style="display: flex; gap: 4px; align-items: center;">
+      <span class="w-pill">1,240 pts</span>
+      <button class="w-icon-btn" type="button" aria-label="History"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"></path></svg>History</button>
+      <button class="w-icon-btn" type="button" aria-label="Close rewards"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </span>
+  </header>
+
+  <!-- Toast inside the widget (ADR-052) -->
+  <template data-sc="if" value="{{toast}}" hint-placeholder-val="{{ true }}">
+    <div role="status" aria-live="polite" style="margin: 4px 16px 0; padding: 12px 14px; border-radius: var(--w-radius); background: var(--w-surface); box-shadow: 0 12px 32px rgba(15,14,23,.12); border: 1px solid var(--w-subtle); display: flex; gap: 12px; align-items: center;">
+      <span style="width: 32px; height: 32px; border-radius: 999px; background: var(--w-brand); color: var(--w-on-brand); display: inline-flex; align-items: center; justify-content: center;"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+      <span style="display: flex; flex-direction: column; flex: 1;"><b>+50 XP · Play 5 rounds done</b><span class="w-muted" style="font-size: 13px;">2 missions left today</span></span>
+    </div>
+  </template>
+
+  <div style="padding: 12px 16px 0;">
+    <nav class="w-tabs" aria-label="Rewards sections"><a class="w-tab on" href="WMissions.html" aria-current="page">Missions</a><a class="w-tab" href="WBadges.html">Badges</a><a class="w-tab" href="WLeaderboard.html">Ranks</a></nav>
+  </div>
+
+  <div style="flex: 1; overflow: auto; padding: 16px; display: flex; flex-direction: column; gap: 16px;">
+    <!-- Progress first -->
+    <div class="w-card" style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;"><span class="w-title">Level 2</span><span style="font-weight: 600;">290 / 500 XP</span></div>
+      <div class="w-bar"><span style="width: 58%;"></span></div>
+      <span class="w-muted" style="font-size: 13px;">210 XP to Level 3 → unlocks a 10% coupon</span>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: baseline;"><h2 style="font-weight: 700; font-size: 16px;">Today's missions</h2><span class="w-muted" style="font-size: 12px;">Resets in 6 h · your time</span></div>
+
+    <div class="w-card" style="display: flex; gap: 12px; align-items: center; padding: 12px;">
+      <span style="width: 24px; height: 24px; border-radius: 999px; background: var(--w-brand); color: var(--w-on-brand); display: inline-flex; align-items: center; justify-content: center; flex: none;"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+      <span style="flex: 1; display: flex; flex-direction: column;"><b style="text-decoration: line-through; text-decoration-color: var(--w-muted);">Play 5 rounds</b><span class="w-muted" style="font-size: 13px;">Done · +50 XP</span></span>
+    </div>
+    <div class="w-card" style="display: flex; flex-direction: column; gap: 8px; padding: 12px; border-color: var(--w-brand);">
+      <div style="display: flex; justify-content: space-between; align-items: center;"><b>Try a new game</b><span class="w-pill">+50 XP</span></div>
+      <div style="display: flex; align-items: center; gap: 8px;"><div class="w-bar" style="flex: 1;"><span style="width: 0%;"></span></div><span class="w-muted" style="font-size: 13px;">0 / 1</span></div>
+    </div>
+    <div class="w-card" style="display: flex; flex-direction: column; gap: 8px; padding: 12px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;"><b>Win 2 rounds</b><span class="w-pill">+80 XP</span></div>
+      <div style="display: flex; align-items: center; gap: 8px;"><div class="w-bar" style="flex: 1;"><span style="width: 50%;"></span></div><span class="w-muted" style="font-size: 13px;">1 / 2</span></div>
+    </div>
+
+    <!-- Kind streak -->
+    <div class="w-card" style="display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;"><b>4-day streak</b><span class="w-muted" style="font-size: 13px;">1 grace day left this week</span></div>
+      <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px;" aria-label="Mon to Thu done, Fri today">
+        <template data-sc="for" list="{{days}}" as="d" hint-placeholder-count="7">
+          <span style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><span style="width: 28px; height: 28px; border-radius: 999px; background: {{d.bg}}; border: 2px solid {{d.bd}};"></span><span class="w-muted" style="font-size: 11px; font-weight: 600;">{{d.l}}</span></span>
+        </template>
+      </div>
+    </div>
+
+    <!-- Expiry warning 7 days before -->
+    <div class="w-card" style="display: flex; gap: 12px; align-items: center; padding: 12px;">
+      <span class="w-pill w-warn">Expires in 5 days</span>
+      <span style="flex: 1;">10% coupon from Level 2</span>
+      <a href="#" style="font-weight: 600;">Use</a>
+    </div>
+  </div>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#6B3FA0","options":["#6B3FA0","#0F766E","#1D4ED8","#B42318"]},"dark":{"editor":"boolean","default":false},"toast":{"editor":"boolean","default":true},"$preview":{"width":400,"height":760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const labels = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    return {
+      brand: this.props.brand ?? '#6B3FA0',
+      theme: (this.props.dark ?? false) ? 'dark' : '',
+      toast: this.props.toast ?? true,
+      days: labels.map((l, i) => ({ l, bg: i < 4 ? 'var(--w-brand)' : 'transparent', bd: i < 5 ? 'var(--w-brand)' : 'var(--w-subtle)' }))
+    };
+  }
+}
+</script>
+<script src="js/dc.js"></script>
+</body>
+</html>

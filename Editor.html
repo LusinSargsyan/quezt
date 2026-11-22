@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quezt — Campaign editor</title>
+<meta name="description" content="Quezt — no-code gamification for business. MVP screen: 4 · Campaign editor.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700,900&f[]=general-sans@500,600&display=swap">
+<link rel="stylesheet" href="css/quezt.css">
+<link rel="stylesheet" href="css/site.css">
+
+</head>
+<body class="page-full">
+<a class="skip" href="#qz-root">Skip to content</a>
+<a class="home-link" href="index.html" aria-label="All Quezt screens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>All screens</a>
+<div id="qz-root" class="full"></div>
+<template id="qz-tpl">
+
+<div class="qz {{theme}}" style="min-height: 1000px; display: flex; flex-direction: column;">
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 12px 24px; background: var(--bg-surface); border-bottom: 1px solid var(--border-default);">
+    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <a class="btn btn-ghost btn-sm" href="Campaigns.html" aria-label="Back to campaigns"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+      <span class="title">Daily missions</span>
+      <span class="chip chip-test">Test</span>
+      <span class="caption" style="display: flex; align-items: center; gap: 4px; color: var(--success);"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Saved</span>
+    </div>
+    <ol aria-label="Publish flow" style="display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap;">
+      <li class="chip">1 Draft</li><li class="chip chip-test" aria-current="step">2 Test</li><li class="chip">3 Preview</li><li class="chip">4 Publish</li>
+    </ol>
+    <div style="display: flex; gap: 8px;">
+      <button class="btn btn-secondary btn-sm" type="button">Simulate players</button>
+      <button class="btn btn-primary btn-sm" type="button">Publish to Production</button>
+    </div>
+  </header>
+
+  <div style="flex: 1; display: flex; flex-wrap: wrap; align-items: stretch;">
+    <!-- Structure -->
+    <aside style="flex: 1 1 220px; max-width: 260px; padding: 16px; display: flex; flex-direction: column; gap: 4px; border-right: 1px solid var(--border-default); background: var(--bg-surface);" aria-label="Campaign parts">
+      <p class="caption" style="padding: 4px 12px 8px;">CAMPAIGN</p>
+      <a class="nav" href="#">Rules · 3</a>
+      <a class="nav on" href="#">Missions · 3</a>
+      <a class="nav" href="#">Badges · 4</a>
+      <a class="nav" href="#">Leaderboard</a>
+      <a class="nav" href="#">Dates &amp; resets</a>
+      <a class="nav" href="#">Reward controls</a>
+      <a class="nav" href="#">Versions · 4</a>
+      <div class="card" style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px; background: var(--accent-subtle); border-color: transparent;">
+        <span class="chip chip-ai" style="align-self: flex-start; background: var(--bg-surface);">AI draft</span>
+        <span class="muted">Copy and badge icons were drafted by AI. Review before publishing.</span>
+      </div>
+    </aside>
+
+    <!-- Canvas -->
+    <section style="flex: 999 1 480px; min-width: 0; padding: 24px; display: flex; flex-direction: column; gap: 16px; background-image: radial-gradient(var(--bg-subtle) 1px, transparent 1px); background-size: 16px 16px;" aria-label="Rule canvas">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;"><h1 class="h2">Missions</h1><button class="btn btn-secondary btn-sm" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add mission</button></div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 640px;">
+        <div class="card" style="display: flex; flex-direction: column; gap: 12px; border: 2px solid var(--accent); box-shadow: var(--shadow-md);">
+          <div style="display: flex; justify-content: space-between; align-items: center;"><span class="title" style="font-size: 16px;">Play 5 rounds</span><span class="chip">Daily · resets 00:00 player time</span></div>
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;" class="mono">
+            <span class="chip" style="font-family: var(--font-mono);">WHEN</span><span class="chip chip-ai" style="font-family: var(--font-mono);">round_played</span>
+            <span class="chip" style="font-family: var(--font-mono);">COUNT ≥</span><span class="chip chip-ai" style="font-family: var(--font-mono);">5</span>
+            <span class="chip" style="font-family: var(--font-mono);">THEN</span><span class="chip chip-live" style="font-family: var(--font-mono);">+50 XP</span>
+          </div>
+        </div>
+        <div style="width: 2px; height: 16px; background: var(--border-input); margin-left: 24px;"></div>
+        <div class="card" style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;"><span class="title" style="font-size: 16px;">Try a new game</span><span class="chip">Daily</span></div>
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <span class="chip" style="font-family: var(--font-mono);">WHEN</span><span class="chip chip-ai" style="font-family: var(--font-mono);">game_opened</span>
+            <span class="chip" style="font-family: var(--font-mono);">WHERE first_time</span>
+            <span class="chip" style="font-family: var(--font-mono);">THEN</span><span class="chip chip-live" style="font-family: var(--font-mono);">+50 XP</span>
+          </div>
+        </div>
+        <div style="width: 2px; height: 16px; background: var(--border-input); margin-left: 24px;"></div>
+        <div class="card" style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;"><span class="title" style="font-size: 16px;">Come back 3 days in a row</span><span class="chip">Streak · 1 grace day / week</span></div>
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <span class="chip" style="font-family: var(--font-mono);">WHEN</span><span class="chip chip-ai" style="font-family: var(--font-mono);">daily_missions_done</span>
+            <span class="chip" style="font-family: var(--font-mono);">STREAK ≥ 3</span>
+            <span class="chip" style="font-family: var(--font-mono);">THEN</span><span class="chip chip-live" style="font-family: var(--font-mono);">Badge: 3-day streak</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="banner" role="alert" style="max-width: 640px;">
+        <svg class="icon icon-20" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--danger);"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>
+        <div style="display: flex; flex-direction: column; gap: 4px;"><b><span class="mono">QZ-EVT-012</span> Event "round_played" has never been received</b><span class="muted">Publishing is blocked until Test receives it once. Send it from your server with the secret key. <a href="Settings.html">See install guide</a></span></div>
+      </div>
+    </section>
+
+    <!-- Properties -->
+    <aside style="flex: 1 1 300px; max-width: 360px; padding: 20px; display: flex; flex-direction: column; gap: 20px; border-left: 1px solid var(--border-default); background: var(--bg-surface);" aria-label="Properties">
+      <div style="display: flex; justify-content: space-between; align-items: center;"><h2 class="title">Mission</h2><div class="seg"><span class="on">Properties</span><span>Preview</span></div></div>
+      <div><label class="label" for="mt">Title</label><input class="input" id="mt" value="Play 5 rounds"><p class="help">Players see this in the widget.</p></div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+        <div><label class="label" for="xp">Reward</label><input class="input" id="xp" value="50 XP"></div>
+        <div><label class="label" for="cd">Limit per player</label><select class="input" id="cd"><option>1 per 24 h</option></select></div>
+      </div>
+      <div>
+        <p class="caption" style="margin-bottom: 8px;">DATES &amp; RESETS</p>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div><label class="label" for="tz">Campaign time zone</label><select class="input" id="tz"><option>Asia/Yerevan (UTC+4)</option></select></div>
+          <label style="display: flex; gap: 10px; align-items: flex-start;"><input type="checkbox" checked style="width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--accent);"><span style="display: flex; flex-direction: column;"><span style="font-weight: 500;">Reset at the player's local midnight</span><span class="help" style="margin: 0;">When the widget sends the player's time zone (ADR-051)</span></span></label>
+          <div><label class="label" for="end">End date</label><input class="input" id="end" value="No end date"></div>
+        </div>
+      </div>
+      <div>
+        <p class="caption" style="margin-bottom: 8px;">REWARD CONTROLS</p>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+          <div><label class="label" for="bud">Monthly coupon budget</label><input class="input" id="bud" value="500"></div>
+          <div><label class="label" for="cap">Daily coupon cap</label><input class="input err" id="cap" value="900" aria-describedby="cap-err"><p class="err-text" id="cap-err">Daily cap can't be above the monthly budget (500). Set 500 or less.</p></div>
+        </div>
+        <p class="help">Spike alert by email at 10× the hourly average. Enforced on the server.</p>
+      </div>
+    </aside>
+  </div>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    return { theme: dark ? 'dark' : '' };
+  }
+}
+</script>
+<script src="js/dc.js"></script>
+</body>
+</html>

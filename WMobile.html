@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Widget — Mobile</title>
+<meta name="description" content="Quezt — no-code gamification for business. MVP screen: W5 · Mobile bottom sheet.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700,900&f[]=general-sans@500,600&display=swap">
+<link rel="stylesheet" href="css/quezt.css">
+<link rel="stylesheet" href="css/site.css">
+
+</head>
+<body class="page-stage">
+<a class="skip" href="#qz-root">Skip to content</a>
+<a class="home-link" href="index.html" aria-label="All Quezt screens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>All screens</a>
+<div id="qz-root" class="stage"></div>
+<template id="qz-tpl">
+
+<div class="w {{theme}}" style="--w-brand: {{brand}}; width: 390px; height: 844px; position: relative; overflow: hidden; background: #f7f6fa;">
+  <!-- Host site (placeholder) -->
+  <div style="padding: 20px; display: flex; flex-direction: column; gap: 16px; color: #18171f;" aria-hidden="true">
+    <div style="display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 700;">[Your site]</span><span style="width: 24px; height: 16px; border-top: 2px solid #5e5b6b; border-bottom: 2px solid #5e5b6b;"></span></div>
+    <div style="height: 180px; border-radius: 12px; background: #eceaf2;"></div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+      <div style="height: 140px; border-radius: 12px; background: #eceaf2;"></div><div style="height: 140px; border-radius: 12px; background: #eceaf2;"></div>
+      <div style="height: 140px; border-radius: 12px; background: #eceaf2;"></div><div style="height: 140px; border-radius: 12px; background: #eceaf2;"></div>
+    </div>
+  </div>
+
+  <template data-sc="if" value="{{closed}}" hint-placeholder-val="{{ false }}">
+    <button type="button" class="w-btn" aria-label="Open rewards, 1,240 points" style="position: absolute; right: 16px; bottom: 24px; height: 56px; padding: 0 20px; border-radius: 999px; box-shadow: 0 12px 32px rgba(15,14,23,.2);">
+      <svg class="icon icon-20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h18v3H3zM5 12v9h14v-9M12 9v12"></path></svg>Rewards · 1,240 pts
+      <span style="position: absolute; top: 6px; right: 10px; width: 10px; height: 10px; border-radius: 999px; background: #b42318; border: 2px solid var(--w-on-brand);" aria-hidden="true"></span>
+    </button>
+  </template>
+
+  <template data-sc="if" value="{{open}}" hint-placeholder-val="{{ true }}">
+    <div style="position: absolute; inset: 0; background: rgba(15,14,23,.4);" aria-hidden="true"></div>
+    <section role="dialog" aria-label="Rewards" style="position: absolute; left: 0; right: 0; bottom: 0; height: 640px; background: var(--w-surface); border-radius: 20px 20px 0 0; display: flex; flex-direction: column; box-shadow: 0 -8px 32px rgba(15,14,23,.16);">
+      <div style="display: flex; justify-content: center; padding: 10px 0 4px;"><span style="width: 40px; height: 5px; border-radius: 999px; background: var(--w-subtle);" aria-hidden="true"></span></div>
+      <header style="display: flex; justify-content: space-between; align-items: center; padding: 4px 12px 8px 20px;">
+        <span style="font-weight: 700; font-size: 16px;">Your Brand Rewards</span>
+        <span style="display: flex; gap: 4px; align-items: center;"><span class="w-pill">1,240 pts</span><button class="w-icon-btn" type="button" aria-label="Close rewards" style="width: 44px; height: 44px; justify-content: center;"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></span>
+      </header>
+      <div style="padding: 0 16px;"><nav class="w-tabs" aria-label="Rewards sections"><span class="w-tab" style="background: var(--w-surface); color: var(--w-text);">Missions</span><span class="w-tab">Badges</span><span class="w-tab">Ranks</span></nav></div>
+      <div style="flex: 1; overflow: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+        <div class="w-card" style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline;"><span class="w-title">Level 2</span><span style="font-weight: 600;">290 / 500 XP</span></div>
+          <div class="w-bar"><span style="width: 58%;"></span></div>
+          <span class="w-muted" style="font-size: 13px;">210 XP to Level 3 → $12.40 coupon</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;"><b>Today's missions</b><span class="w-muted" style="font-size: 12px;">Resets in 6 h</span></div>
+        <div class="w-card" style="display: flex; justify-content: space-between; align-items: center; padding: 14px;"><span style="display: flex; flex-direction: column;"><b>Try a new game</b><span class="w-muted" style="font-size: 13px;">0 / 1</span></span><span class="w-pill">+50 XP</span></div>
+        <div class="w-card" style="display: flex; justify-content: space-between; align-items: center; padding: 14px;"><span style="display: flex; flex-direction: column;"><b>Win 2 rounds</b><span class="w-muted" style="font-size: 13px;">1 / 2</span></span><span class="w-pill">+80 XP</span></div>
+        <div class="w-card" style="display: flex; justify-content: space-between; align-items: center; padding: 14px;"><span style="display: flex; flex-direction: column;"><b>4-day streak</b><span class="w-muted" style="font-size: 13px;">1 grace day left this week</span></span><span class="w-pill">7-day badge</span></div>
+        <button class="w-btn w-btn-ghost" type="button" style="height: 44px;">Minimize rewards</button>
+      </div>
+    </section>
+  </template>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#6B3FA0","options":["#6B3FA0","#0F766E","#1D4ED8","#B42318"]},"dark":{"editor":"boolean","default":false},"open":{"editor":"boolean","default":true},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const open = this.props.open ?? true;
+    return { brand: this.props.brand ?? '#6B3FA0', theme: (this.props.dark ?? false) ? 'dark' : '', open, closed: !open };
+  }
+}
+</script>
+<script src="js/dc.js"></script>
+</body>
+</html>

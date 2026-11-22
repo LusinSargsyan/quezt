@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Player · Badges</title>
+<meta name="description" content="Quezt — no-code gamification for business. MVP screen: P3 · Badges.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700,900&f[]=general-sans@500,600&display=swap">
+<link rel="stylesheet" href="css/quezt.css">
+<link rel="stylesheet" href="css/player.css">
+<link rel="stylesheet" href="css/site.css">
+
+</head>
+<body class="page-stage">
+<a class="skip" href="#qz-root">Skip to content</a>
+<a class="home-link" href="index.html" aria-label="All Quezt screens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>All screens</a>
+<div id="qz-root" class="stage"></div>
+<template id="qz-tpl">
+
+<div class="qp" style="--qz-w-brand: {{brand}}; width: 400px; height: 760px; display: flex; flex-direction: column; background: var(--qz-w-surface); border-radius: 32px; overflow: hidden; box-shadow: var(--shadow-panel);">
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 14px 14px 10px 20px;">
+    <span style="display: flex; flex-direction: column;"><span style="font-weight: 800; font-size: 16px;">[Your brand] Rewards</span><span class="qp-muted" style="font-size: 12px; line-height: 16px;">Lucky Fox 42</span></span>
+    <span style="display: flex; gap: 6px; align-items: center;">
+      <span class="qp-chip qp-chip-xp" style="height: 32px;">1,240 pts</span>
+      <button class="qp-icon-btn" type="button" aria-label="Close rewards"><svg class="qp-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </span>
+  </header>
+  <div style="padding: 0 16px;">
+    <nav class="qp-tabs" aria-label="Rewards sections"><a class="qp-tab" href="PMissions.html">Missions</a><a class="qp-tab is-on" href="PBadges.html" aria-current="page">Badges</a><a class="qp-tab" href="PLeaderboard.html">Ranks</a></nav>
+  </div>
+
+  <div style="flex: 1; overflow: auto; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 14px;">
+    <section style="position: relative; overflow: hidden; background: var(--qz-w-tile-magenta); color: var(--qz-w-on-tile); border-radius: 24px; padding: 20px; display: flex; gap: 16px; align-items: center;" aria-label="New badge: 3-day streak">
+      <span class="qp-badge-medal" style="width: 76px; height: 76px; background: var(--qz-w-xp); color: var(--qz-w-on-xp); flex: none;"><svg class="qp-ico" viewBox="0 0 24 24" aria-hidden="true" style="width:34px;height:34px"><path d="M12 3c1 3 4 4 4 8a4 4 0 0 1-8 0c0-2 1-3 1-3 0 2 1.5 3 1.5 3S10 7 12 3z"></path></svg></span>
+      <span style="display: flex; flex-direction: column; gap: 4px;"><span class="qp-label" style="color: var(--qz-w-on-tile); opacity: .9;">New badge</span><span class="qp-display" style="font-size: 28px; line-height: 30px;">3-day streak</span><span style="opacity: .9;">Next: 7-day streak · 4 / 7</span></span>
+    </section>
+
+    <div style="display: flex; justify-content: space-between; align-items: baseline;"><h2 class="qp-display" style="font-size: 24px; line-height: 28px;">Your badges</h2><span class="qp-muted">3 of 8</span></div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;">
+      <template data-sc="for" list="{{badges}}" as="b" hint-placeholder-count="8">
+        <button type="button" class="qp-badge {{b.cls}}" aria-label="{{b.aria}}">
+          <span class="qp-badge-medal" style="background: {{b.bg}}; color: {{b.fg}};"><svg class="qp-ico" viewBox="0 0 24 24" aria-hidden="true" style="width:24px;height:24px"><path d="{{b.d}}"></path></svg></span>
+          <span class="qp-badge-name" style="font-weight: 700; font-size: 13px; line-height: 16px;">{{b.name}}</span>
+          <span class="qp-muted" style="font-size: 11px; line-height: 14px;">{{b.sub}}</span>
+        </button>
+      </template>
+    </div>
+    <p class="qp-muted" style="font-size: 12px; line-height: 16px;">Locked badges show how to unlock them.</p>
+  </div>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#6D4DFF","options":["#6D4DFF","#2F6FE8","#C93A47","#0F766E"]},"$preview":{"width":400,"height":760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const trophy = 'M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3';
+    const flame = 'M12 3c1 3 4 4 4 8a4 4 0 0 1-8 0c0-2 1-3 1-3 0 2 1.5 3 1.5 3S10 7 12 3z';
+    const star = 'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z';
+    const compass = 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM15.5 8.5l-2 5-5 2 2-5z';
+    const gift = 'M3 9h18v3H3zM5 12v9h14v-9M12 9v12';
+    const raw = [
+      { name: 'Getting started', d: star, on: true, sub: 'Nov 2', bg: 'var(--qz-w-tile-violet)' },
+      { name: 'First win', d: trophy, on: true, sub: 'Nov 4', bg: 'var(--qz-w-tile-blue)' },
+      { name: '3-day streak', d: flame, on: true, sub: 'Today', bg: 'var(--qz-w-streak)' },
+      { name: '7-day streak', d: flame, on: false, sub: '4 / 7 days' },
+      { name: 'Explorer', d: compass, on: false, sub: 'Try 5 games · 2 / 5' },
+      { name: 'Level 3', d: gift, on: false, sub: '210 XP to go' },
+      { name: 'Weekend player', d: star, on: false, sub: 'Play Sat + Sun' },
+      { name: 'Top 10', d: trophy, on: false, sub: 'Weekly rank' }
+    ];
+    return {
+      brand: this.props.brand ?? '#6D4DFF',
+      badges: raw.map((b) => ({
+        ...b,
+        cls: b.on ? '' : 'is-locked',
+        bg: b.on ? b.bg : 'var(--qz-w-line)',
+        fg: b.on ? (b.d === flame ? 'var(--qz-w-on-xp)' : 'var(--qz-w-on-tile)') : 'var(--qz-w-disabled)',
+        aria: b.name + (b.on ? ', earned ' + b.sub : ', locked, ' + b.sub)
+      }))
+    };
+  }
+}
+</script>
+<script src="js/dc.js"></script>
+</body>
+</html>

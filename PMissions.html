@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Player · Missions</title>
+<meta name="description" content="Quezt — no-code gamification for business. MVP screen: P2 · Missions + toast.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700,900&f[]=general-sans@500,600&display=swap">
+<link rel="stylesheet" href="css/quezt.css">
+<link rel="stylesheet" href="css/player.css">
+<link rel="stylesheet" href="css/site.css">
+
+</head>
+<body class="page-stage">
+<a class="skip" href="#qz-root">Skip to content</a>
+<a class="home-link" href="index.html" aria-label="All Quezt screens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>All screens</a>
+<div id="qz-root" class="stage"></div>
+<template id="qz-tpl">
+
+<div class="qp" style="--qz-w-brand: {{brand}}; width: 400px; height: 760px; display: flex; flex-direction: column; background: var(--qz-w-surface); border-radius: 32px; overflow: hidden; box-shadow: var(--shadow-panel);">
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 14px 14px 10px 20px;">
+    <span style="display: flex; flex-direction: column;"><span style="font-weight: 800; font-size: 16px;">[Your brand] Rewards</span><span class="qp-muted" style="font-size: 12px; line-height: 16px;">Lucky Fox 42</span></span>
+    <span style="display: flex; gap: 6px; align-items: center;">
+      <span class="qp-chip qp-chip-xp" style="height: 32px;">1,240 pts</span>
+      <button class="qp-icon-btn" type="button" aria-label="Close rewards"><svg class="qp-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </span>
+  </header>
+
+  <template data-sc="if" value="{{toast}}" hint-placeholder-val="{{ true }}">
+    <div role="status" aria-live="polite" class="qp-row" style="margin: 0 16px 8px; background: var(--qz-w-surface-raised); border-radius: 20px; box-shadow: var(--shadow-panel); padding: 10px 14px;">
+      <span style="width: 40px; height: 40px; border-radius: 999px; background: var(--qz-w-xp); color: var(--qz-w-on-xp); display: inline-flex; align-items: center; justify-content: center; flex: none;"><svg class="qp-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"></path></svg></span>
+      <span style="flex: 1; display: flex; flex-direction: column;"><b style="font-size: 16px;">+50 XP</b><span class="qp-muted">Play 5 rounds done · 2 left today</span></span>
+    </div>
+  </template>
+
+  <div style="padding: 0 16px;">
+    <nav class="qp-tabs" aria-label="Rewards sections"><a class="qp-tab is-on" href="PMissions.html" aria-current="page">Missions</a><a class="qp-tab" href="PBadges.html">Badges</a><a class="qp-tab" href="PLeaderboard.html">Ranks</a></nav>
+  </div>
+
+  <div style="flex: 1; overflow: auto; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 12px;">
+    <section style="background: var(--qz-w-brand); color: var(--qz-w-on-brand); border-radius: 24px; padding: 18px; display: flex; gap: 16px; align-items: center;" aria-label="Level 2, 290 of 500 XP">
+      <span style="position: relative; width: 72px; height: 72px; flex: none;">
+      <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true" style="position: absolute; inset: 0;">
+        <circle cx="36" cy="36" r="30" fill="none" stroke="#ffffff" stroke-opacity=".22" stroke-width="8"></circle>
+        <circle cx="36" cy="36" r="30" fill="none" stroke="var(--qz-w-cta)" stroke-width="8" stroke-linecap="round" stroke-dasharray="109 188.5" transform="rotate(-90 36 36)"></circle>
+      </svg>
+      <span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;" aria-hidden="true">
+        <template data-sc="if" value="{{levelIcon}}" hint-placeholder-val="{{ false }}"><svg class="qp-ico" viewBox="0 0 24 24" style="width: 28px; height: 28px;"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg></template>
+        <template data-sc="if" value="{{levelNum}}" hint-placeholder-val="{{ true }}"><span class="qp-num" style="font-size: 26px;">2</span></template>
+      </span>
+      </span>
+      <span style="display: flex; flex-direction: column; gap: 2px;"><span class="qp-num" style="font-size: 28px; line-height: 32px;">290 / 500 XP</span><span style="opacity: .9;">210 XP to Level 3 → 10% coupon</span></span>
+    </section>
+
+    <div style="display: flex; justify-content: space-between; align-items: baseline;"><h2 class="qp-display" style="font-size: 24px; line-height: 28px;">Today</h2><span class="qp-muted" style="font-size: 12px;">Resets in 6 h · your time</span></div>
+
+    <div class="qp-card qp-row" style="padding: 12px 14px;">
+      <span class="qp-tile" style="background: var(--qz-w-success); color: var(--qz-w-on-xp);"><svg class="qp-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>
+      <span style="flex: 1; display: flex; flex-direction: column;"><b style="font-size: 16px;">Play 5 rounds</b><span class="qp-muted">+50 XP added</span></span>
+      <span class="qp-chip qp-chip-done">Done</span>
+    </div>
+    <div class="qp-card" style="display: flex; flex-direction: column; gap: 10px; padding: 12px 14px; box-shadow: inset 0 0 0 2px var(--qz-w-brand);">
+      <div class="qp-row"><span class="qp-tile"><svg class="qp-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"></path></svg></span><span style="flex: 1; display: flex; flex-direction: column;"><b style="font-size: 16px;">Win 2 rounds</b><span class="qp-muted">1 to go</span></span><span class="qp-chip qp-chip-xp">+80 XP</span></div>
+      <div class="qp-row" style="gap: 8px;"><div class="qp-bar qp-bar-sm" style="flex: 1;"><span style="width: 50%;"></span></div><span style="font-weight: 700; font-size: 12px;">1 / 2</span></div>
+    </div>
+    <div class="qp-card" style="display: flex; flex-direction: column; gap: 10px; padding: 12px 14px;">
+      <div class="qp-row"><span class="qp-tile"><svg class="qp-ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M15.5 8.5l-2 5-5 2 2-5z"></path></svg></span><span style="flex: 1; display: flex; flex-direction: column;"><b style="font-size: 16px;">Try a new game</b><span class="qp-muted">Any game you haven't played</span></span><span class="qp-chip qp-chip-xp">+50 XP</span></div>
+      <div class="qp-row" style="gap: 8px;"><div class="qp-bar qp-bar-sm" style="flex: 1;"><span style="width: 3%;"></span></div><span style="font-weight: 700; font-size: 12px;">0 / 1</span></div>
+    </div>
+
+    <div class="qp-card" style="display: flex; flex-direction: column; gap: 10px; padding: 14px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;"><b style="color: var(--qz-w-streak-ink); font-size: 16px;">4-day streak</b><span class="qp-muted" style="font-size: 12px;">1 grace day left this week</span></div>
+      <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px;" aria-label="Monday, Tuesday, Thursday done, Wednesday grace day, Friday today">
+        <template data-sc="for" list="{{days}}" as="d" hint-placeholder-count="7">
+          <span style="display: flex; flex-direction: column; align-items: center; gap: 4px;"><span style="width: 30px; height: 30px; border-radius: 999px; background: {{d.bg}}; box-shadow: {{d.ring}};"></span><span style="font-size: 11px; font-weight: 700; color: {{d.fg}};">{{d.l}}</span></span>
+        </template>
+      </div>
+    </div>
+
+    <div class="qp-card qp-row" style="padding: 12px 14px;">
+      <span class="qp-chip qp-chip-warn">Expires in 5 days</span>
+      <span style="flex: 1; font-weight: 600;">10% coupon</span>
+      <a class="qp-btn qp-btn-sm" href="#">Use</a>
+    </div>
+  </div>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#6D4DFF","options":["#6D4DFF","#2F6FE8","#C93A47","#0F766E"]},"toast":{"editor":"boolean","default":true},"levelIcon":{"editor":"boolean","default":false},"$preview":{"width":400,"height":760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const L = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    const st = ['done', 'done', 'grace', 'done', 'today', 'future', 'future'];
+    return {
+      brand: this.props.brand ?? '#6D4DFF',
+      toast: this.props.toast ?? true,
+      levelIcon: this.props.levelIcon ?? false,
+      levelNum: !(this.props.levelIcon ?? false),
+      days: L.map((l, i) => {
+        const s = st[i];
+        return {
+          l,
+          bg: s === 'done' ? 'var(--qz-w-streak)' : (s === 'future' ? 'var(--qz-w-line)' : 'transparent'),
+          ring: s === 'grace' ? 'inset 0 0 0 2px var(--qz-w-streak)' : (s === 'today' ? 'inset 0 0 0 3px var(--qz-w-cta)' : 'none'),
+          fg: s === 'today' ? 'var(--qz-w-cta)' : 'var(--qz-w-muted)'
+        };
+      })
+    };
+  }
+}
+</script>
+<script src="js/dc.js"></script>
+</body>
+</html>

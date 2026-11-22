@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quezt — Campaigns</title>
+<meta name="description" content="Quezt — no-code gamification for business. MVP screen: 3 · Campaigns.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700,900&f[]=general-sans@500,600&display=swap">
+<link rel="stylesheet" href="css/quezt.css">
+<link rel="stylesheet" href="css/site.css">
+
+</head>
+<body class="page-full">
+<a class="skip" href="#qz-root">Skip to content</a>
+<a class="home-link" href="index.html" aria-label="All Quezt screens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>All screens</a>
+<div id="qz-root" class="full"></div>
+<template id="qz-tpl">
+
+<div class="qz {{theme}}" style="min-height: 1000px; display: flex; flex-wrap: wrap;">
+  <div style="flex: 1 1 240px;"><dc-import name="Sidebar" active="campaigns" env="production" dark="{{dark}}" hint-size="100%,1000px"></dc-import></div>
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 24px; max-width: 1200px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 12px;"><h1 class="h1">Campaigns</h1><span class="chip chip-live">Production</span></div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <button class="btn btn-secondary" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5 13.8 11.3 12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"></path></svg>Draft with AI</button>
+        <a class="btn btn-primary" href="Editor.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>New campaign</a>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <div class="seg" role="group" aria-label="Filter by status"><span class="on">All · 4</span><span>Live · 1</span><span>Draft · 2</span><span>Ended · 1</span></div>
+      <div style="position: relative; width: 280px; max-width: 100%;">
+        <label for="q" class="caption" style="position: absolute; width: 1px; height: 1px; overflow: hidden;">Search campaigns</label>
+        <input class="input" id="q" type="search" placeholder="Search campaigns" style="padding-left: 36px;">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="position: absolute; left: 12px; top: 12px; color: var(--text-secondary);"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      </div>
+    </div>
+
+    <div class="card" style="padding: 0;">
+      <div class="table-box"><table class="table">
+        <thead><tr><th>Campaign</th><th>Status</th><th>Mechanics</th><th>Players (30 d)</th><th>Completion</th><th>Time zone · ends</th><th><span style="position: absolute; width: 1px; height: 1px; overflow: hidden;">Actions</span></th></tr></thead>
+        <tbody>
+          <tr>
+            <td><div style="display: flex; flex-direction: column; gap: 2px;"><a href="Editor.html" style="font-weight: 600;">Daily missions</a><span class="caption">v4 · published Nov 12 by Lusine</span></div></td>
+            <td><span class="chip chip-live"><span class="dot" style="background: var(--success);"></span>Live</span></td>
+            <td><span class="muted">3 missions · 4 badges · Leaderboard</span></td>
+            <td>2,184</td>
+            <td><div style="display: flex; align-items: center; gap: 8px;"><div class="bar" style="width: 80px;"><span style="width: 62%;"></span></div><span>62%</span></div></td>
+            <td><span class="muted">Asia/Yerevan · no end</span></td>
+            <td><button class="btn btn-ghost btn-sm" type="button">Duplicate</button></td>
+          </tr>
+          <tr>
+            <td><div style="display: flex; flex-direction: column; gap: 2px;"><a href="Editor.html" style="font-weight: 600;">Welcome quest</a><span class="caption" style="display: flex; gap: 6px; align-items: center;"><span class="chip chip-ai" style="height: 18px;">AI-generated</span>edited 2 h ago</span></div></td>
+            <td><span class="chip">Draft</span></td>
+            <td><span class="muted">1 mission · 3 badges</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="muted">Asia/Yerevan · Dec 31</span></td>
+            <td><button class="btn btn-ghost btn-sm" type="button">Duplicate</button></td>
+          </tr>
+          <tr>
+            <td><div style="display: flex; flex-direction: column; gap: 2px;"><a href="Editor.html" style="font-weight: 600;">Loyalty levels</a><span class="caption">edited yesterday</span></div></td>
+            <td><span class="chip chip-test">In Test</span></td>
+            <td><span class="muted">3 levels · 3 coupons</span></td>
+            <td><span class="muted">12 simulated</span></td>
+            <td>—</td>
+            <td><span class="muted">Asia/Yerevan · no end</span></td>
+            <td><button class="btn btn-ghost btn-sm" type="button">Duplicate</button></td>
+          </tr>
+          <tr>
+            <td><div style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 600;">Halloween week</span><span class="caption">ended Nov 1</span></div></td>
+            <td><span class="chip">Ended</span></td>
+            <td><span class="muted">5 missions · 1 badge</span></td>
+            <td>1,302</td>
+            <td><div style="display: flex; align-items: center; gap: 8px;"><div class="bar" style="width: 80px;"><span style="width: 41%;"></span></div><span>41%</span></div></td>
+            <td><span class="muted">Asia/Yerevan · Nov 1</span></td>
+            <td><button class="btn btn-ghost btn-sm" type="button">Duplicate</button></td>
+          </tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="banner banner-info">
+      <svg class="icon icon-20" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--accent);"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v5h1"></path></svg>
+      <div style="display: flex; flex-direction: column; gap: 2px;"><b>Free plan: 1 live campaign</b><span class="muted">Your 2nd campaign stays in Test until you upgrade. Branding and data are never locked.</span></div>
+    </div>
+  </main>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    return { dark, theme: dark ? 'dark' : '' };
+  }
+}
+</script>
+<script src="js/dc.js"></script>
+</body>
+</html>

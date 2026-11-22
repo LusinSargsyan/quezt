@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quezt — Sidebar</title>
+<meta name="description" content="Quezt — no-code gamification for business. MVP screen: Component · Sidebar.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700,900&f[]=general-sans@500,600&display=swap">
+<link rel="stylesheet" href="css/quezt.css">
+<link rel="stylesheet" href="css/site.css">
+
+</head>
+<body class="page-stage">
+<a class="skip" href="#qz-root">Skip to content</a>
+<a class="home-link" href="index.html" aria-label="All Quezt screens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>All screens</a>
+<div id="qz-root" class="stage"></div>
+<template id="qz-tpl">
+
+<nav class="qz {{theme}}" aria-label="Main" style="width: 100%; min-height: 1000px; height: 100%; display: flex; flex-direction: column; gap: 16px; padding: 16px 12px; background: var(--bg-surface); border-right: 1px solid var(--border-default);">
+  <div style="display: flex; align-items: center; gap: 10px; padding: 4px 8px;">
+    <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="var(--accent)"></rect><path d="M9 14a5 5 0 1 0 10 0a5 5 0 1 0-10 0M17 17l3 3" stroke="var(--on-accent)" stroke-width="2.2" fill="none" stroke-linecap="round"></path></svg>
+    <span class="display" style="font-size: 20px;">Quezt</span>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 6px; padding: 0 4px;">
+    <label class="caption" for="proj">PROJECT</label>
+    <select class="input" id="proj"><option>Demo project</option></select>
+    <div class="seg" role="group" aria-label="Environment" style="width: 100%;">
+      <span class="{{testCls}}" style="flex: 1; justify-content: center;"><span class="dot" style="background: var(--warning);"></span>Test</span>
+      <span class="{{prodCls}}" style="flex: 1; justify-content: center;"><span class="dot" style="background: var(--success);"></span>Production</span>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 2px;">
+    <template data-sc="for" list="{{items}}" as="item" hint-placeholder-count="6">
+      <a class="nav {{item.cls}}" href="{{item.href}}">
+        <svg class="icon icon-20" viewBox="0 0 24 24" aria-hidden="true"><path d="{{item.d}}"></path></svg>
+        <span>{{item.label}}</span>
+      </a>
+    </template>
+  </div>
+
+  <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
+    <div class="card" style="padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: flex; justify-content: space-between;"><span class="caption">FREE PLAN · MAU</span><span class="caption">412 / 1,000</span></div>
+      <div class="bar"><span style="width: 41%;"></span></div>
+      <span class="help" style="margin: 0;">Full branding included. Data is never locked.</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px; padding: 8px;">
+      <span style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent-subtle); color: var(--accent); display: inline-flex; align-items: center; justify-content: center; font-weight: 700;">L</span>
+      <span style="display: flex; flex-direction: column;"><span style="font-weight: 600;">Lusine</span><span class="caption">Owner</span></span>
+    </div>
+  </div>
+</nav>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"active":{"editor":"enum","options":["overview","campaigns","theme","players","analytics","settings"],"default":"overview"},"env":{"editor":"enum","options":["test","production"],"default":"test"},"dark":{"editor":"boolean","default":false},"$preview":{"width":240,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const active = this.props.active ?? 'overview';
+    const env = this.props.env ?? 'test';
+    const nav = [
+      { id: 'overview', label: 'Overview', href: 'Overview.html', d: 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z' },
+      { id: 'campaigns', label: 'Campaigns', href: 'Campaigns.html', d: 'M5 21V4M5 4h11l-2 4 2 4H5' },
+      { id: 'theme', label: 'Theme studio', href: 'Theme.html', d: 'M12 3a9 9 0 1 0 0 18c1.1 0 1.5-.8 1.2-1.6-.4-1 .2-2.4 1.6-2.4H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10zM7.5 11.5h.01M10 7.5h.01M15 7.5h.01' },
+      { id: 'players', label: 'Players', href: 'Players.html', d: 'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21a7 7 0 0 1 14 0M17 3.5a4 4 0 0 1 0 7.5M22 21a7 7 0 0 0-4-6.3' },
+      { id: 'analytics', label: 'Analytics', href: 'Analytics.html', d: 'M4 20V10M10 20V4M16 20v-7M22 20H2' },
+      { id: 'settings', label: 'Settings', href: 'Settings.html', d: 'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2V21a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 3 14H3a2 2 0 0 1 0-4h.1a1.7 1.7 0 0 0 1.2-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 10 3.1V3a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.7 1.7 0 0 0 21 10h.1a2 2 0 0 1 0 4H21a1.7 1.7 0 0 0-1.6 1z' }
+    ];
+    return {
+      theme: (this.props.dark ?? false) ? 'dark' : '',
+      testCls: env === 'test' ? 'on' : '',
+      prodCls: env === 'production' ? 'on' : '',
+      items: nav.map((n) => ({ ...n, cls: n.id === active ? 'on' : '' }))
+    };
+  }
+}
+</script>
+<script src="js/dc.js"></script>
+</body>
+</html>

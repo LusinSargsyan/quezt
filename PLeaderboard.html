@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Player · Leaderboard</title>
+<meta name="description" content="Quezt — no-code gamification for business. MVP screen: P4 · Leaderboard.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700,900&f[]=general-sans@500,600&display=swap">
+<link rel="stylesheet" href="css/quezt.css">
+<link rel="stylesheet" href="css/player.css">
+<link rel="stylesheet" href="css/site.css">
+
+</head>
+<body class="page-stage">
+<a class="skip" href="#qz-root">Skip to content</a>
+<a class="home-link" href="index.html" aria-label="All Quezt screens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>All screens</a>
+<div id="qz-root" class="stage"></div>
+<template id="qz-tpl">
+
+<div class="qp" style="--qz-w-brand: {{brand}}; width: 400px; height: 760px; display: flex; flex-direction: column; background: var(--qz-w-surface); border-radius: 32px; overflow: hidden; box-shadow: var(--shadow-panel);">
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 14px 14px 10px 20px;">
+    <span style="display: flex; flex-direction: column;"><span style="font-weight: 800; font-size: 16px;">[Your brand] Rewards</span><span class="qp-muted" style="font-size: 12px; line-height: 16px;">Lucky Fox 42</span></span>
+    <span style="display: flex; gap: 6px; align-items: center;">
+      <span class="qp-chip qp-chip-xp" style="height: 32px;">1,240 pts</span>
+      <button class="qp-icon-btn" type="button" aria-label="Close rewards"><svg class="qp-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </span>
+  </header>
+  <div style="padding: 0 16px;">
+    <nav class="qp-tabs" aria-label="Rewards sections"><a class="qp-tab" href="PMissions.html">Missions</a><a class="qp-tab" href="PBadges.html">Badges</a><a class="qp-tab is-on" href="PLeaderboard.html" aria-current="page">Ranks</a></nav>
+  </div>
+
+  <div style="flex: 1; overflow: auto; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 12px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline;"><h2 class="qp-display" style="font-size: 24px; line-height: 28px;">This week</h2><span class="qp-muted" style="font-size: 12px;">Resets Monday 00:00</span></div>
+
+    <!-- Podium -->
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; align-items: end;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><span class="qp-medal" style="background: var(--qz-w-rank-silver); width: 40px; height: 40px; font-size: 16px;">2</span><b style="font-size: 13px; text-align: center; line-height: 16px;">Blue Owl 7</b><div style="width: 100%; height: 70px; border-radius: 16px 16px 8px 8px; background: var(--qz-w-surface-raised); display: flex; align-items: center; justify-content: center;" class="qp-num">3,610</div></div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><span class="qp-medal" style="background: var(--qz-w-rank-gold); width: 48px; height: 48px; font-size: 18px;">1</span><b style="font-size: 13px; text-align: center; line-height: 16px;">Red Kite 61</b><div style="width: 100%; height: 100px; border-radius: 16px 16px 8px 8px; background: var(--qz-w-brand); color: var(--qz-w-on-brand); display: flex; align-items: center; justify-content: center;" class="qp-num">3,920</div></div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;"><span class="qp-medal" style="background: var(--qz-w-rank-bronze); width: 40px; height: 40px; font-size: 16px;">3</span><b style="font-size: 13px; text-align: center; line-height: 16px;">Night Fox 11</b><div style="width: 100%; height: 54px; border-radius: 16px 16px 8px 8px; background: var(--qz-w-surface-raised); display: flex; align-items: center; justify-content: center;" class="qp-num">3,355</div></div>
+    </div>
+
+    <span class="qp-label" style="padding-top: 4px;">Around you</span>
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <template data-sc="for" list="{{near}}" as="r" hint-placeholder-count="5">
+        <div class="qp-row" style="padding: 10px 14px; border-radius: 999px; background: {{r.bg}}; color: {{r.fg}}; font-weight: {{r.fw}};">
+          <span style="width: 28px; text-align: center; font-weight: 700;">{{r.rank}}</span>
+          <span style="flex: 1;">{{r.name}}</span>
+          <span style="font-variant-numeric: tabular-nums;">{{r.xp}} XP</span>
+        </div>
+      </template>
+    </div>
+
+    <div class="qp-card qp-row" style="padding: 14px;">
+      <span style="flex: 1; display: flex; flex-direction: column;"><b>40 XP to pass Swift Lynx 18</b><span class="qp-muted">Finish "Win 2 rounds" (+80 XP)</span></span>
+      <a class="qp-btn qp-btn-sm" href="PMissions.html">Go</a>
+    </div>
+
+    <p class="qp-muted" style="font-size: 12px; line-height: 16px;">Aliases only. Top 10 earn a "Top 10" badge, no prizes for rank. <a href="#" style="text-decoration: underline;">Hide me</a></p>
+  </div>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"color","default":"#6D4DFF","options":["#6D4DFF","#2F6FE8","#C93A47","#0F766E"]},"$preview":{"width":400,"height":760}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const near = [
+      { rank: 12, name: 'Calm Heron 5', xp: '1,410' },
+      { rank: 13, name: 'Swift Lynx 18', xp: '1,280' },
+      { rank: 14, name: 'You · Lucky Fox 42', xp: '1,240', me: true },
+      { rank: 15, name: 'Quiet Bear 3', xp: '1,195' },
+      { rank: 16, name: 'Green Moth 90', xp: '1,150' }
+    ];
+    return {
+      brand: this.props.brand ?? '#6D4DFF',
+      near: near.map((r) => ({ ...r, bg: r.me ? 'var(--qz-w-brand)' : 'var(--qz-w-surface-raised)', fg: r.me ? 'var(--qz-w-on-brand)' : 'var(--qz-w-text)', fw: r.me ? 800 : 500 }))
+    };
+  }
+}
+</script>
+<script src="js/dc.js"></script>
+</body>
+</html>

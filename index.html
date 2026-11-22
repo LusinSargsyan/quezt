@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quezt — Turn users into players</title>
+<meta name="description" content="Quezt: no-code gamification for business. MVP screens — dashboard with Play mode and the player widget.">
+<meta property="og:title" content="Quezt — Turn users into players">
+<meta property="og:description" content="No-code gamification for business: missions, badges, levels, leaderboards.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700,900&f[]=general-sans@500,600&display=swap">
+<link rel="stylesheet" href="css/quezt.css">
+<link rel="stylesheet" href="css/site.css">
+<link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="qz home">
+  <header class="home-top">
+    <a class="brand" href="index.html" aria-label="Quezt home">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="var(--accent)"></rect><path d="M9 14a5 5 0 1 0 10 0a5 5 0 1 0-10 0M17 17l3 3" stroke="var(--on-accent)" stroke-width="2.2" fill="none" stroke-linecap="round"></path></svg>
+      <span class="display" style="font-size:20px">Quezt</span>
+    </a>
+    <nav aria-label="Page" class="home-nav">
+      <a href="#screens">Screens</a><a href="#pilot">Join the pilot</a>
+      <a class="btn btn-primary btn-sm" href="Main.html">Open the dashboard</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <span class="chip chip-ai">MVP · Test environment · sample data</span>
+      <h1 class="display hero-h">Turn users into players.</h1>
+      <p class="hero-p muted">No-code gamification for any digital product: missions, badges, levels and leaderboards — set up in minutes, styled in your brand.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="Main.html">Start with onboarding</a>
+        <a class="btn btn-secondary" href="WHub.html">See the player widget</a>
+      </div>
+      <p class="caption">Tip: every screen has a <b>Play mode</b> button (bottom right) — switch dark mode, brand color and states. Your choices stay after reload.</p>
+    </section>
+
+    <section id="screens" class="block" aria-labelledby="h-screens">
+      <h2 class="h2" id="h-screens">All screens</h2>
+      <h3 class="title">Dashboard — for the business</h3>
+      <div class="grid" id="g-dash"></div>
+      <h3 class="title">Player widget — inside the customer's app</h3>
+      <div class="grid" id="g-player"></div>
+      <h3 class="title">Widget v1 — light theme</h3>
+      <div class="grid" id="g-widget"></div>
+      <h3 class="title">Components</h3>
+      <div class="grid" id="g-comp"></div>
+    </section>
+
+    <section id="pilot" class="block two" aria-labelledby="h-pilot">
+      <div class="card form-card">
+        <h2 class="h2" id="h-pilot">Join the pilot</h2>
+        <p class="muted">Tell us about your product. We reply by email.</p>
+        <form id="waitlist" novalidate>
+          <div class="field"><label class="label" for="f-name">Name</label><input class="input" id="f-name" name="name" autocomplete="name" required aria-describedby="err-name"><p class="help err-text" id="err-name" aria-live="polite"></p></div>
+          <div class="field"><label class="label" for="f-email">Work email</label><input class="input" id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="err-email"><p class="help err-text" id="err-email" aria-live="polite"></p></div>
+          <div class="field"><label class="label" for="f-company">Company <span class="caption">(optional)</span></label><input class="input" id="f-company" name="company" autocomplete="organization"></div>
+          <div class="field"><label class="label" for="f-product">Product type</label>
+            <select class="input" id="f-product" name="product"><option>E-commerce</option><option>iGaming</option><option>Fintech</option><option>Edtech</option><option>SaaS</option><option>Other</option></select></div>
+          <div class="field"><label class="label" for="f-goal">What should players do more? <span class="caption">(optional)</span></label><textarea class="input" id="f-goal" name="goal" rows="3" placeholder="e.g. come back every day, finish their profile"></textarea></div>
+          <div class="field"><label class="consent"><input type="checkbox" name="consent" value="yes" aria-describedby="err-consent"> I agree Quezt may email me about the pilot.</label><p class="help err-text" id="err-consent" aria-live="polite"></p></div>
+          <button class="btn btn-primary" type="submit">Join the pilot</button>
+          <p class="help" id="wl-status" role="status" aria-live="polite"></p>
+          <p class="caption" id="wl-count"></p>
+        </form>
+      </div>
+      <div class="card qr-card">
+        <h2 class="title">Open on your phone</h2>
+        <div id="qr" class="qr" role="img" aria-label="QR code to this page"></div>
+        <p class="caption mono" id="qr-url"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="home-foot caption">Quezt MVP · Lusine Sargsyan · AI in Product Design (ACA) · Fonts: <a href="https://www.fontshare.com/">Fontshare</a></footer>
+</div>
+<script src="js/config.js"></script>
+<script src="js/qrcode.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

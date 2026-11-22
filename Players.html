@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quezt — Players</title>
+<meta name="description" content="Quezt — no-code gamification for business. MVP screen: 6 · Players + support.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400,500,700,900&f[]=general-sans@500,600&display=swap">
+<link rel="stylesheet" href="css/quezt.css">
+<link rel="stylesheet" href="css/site.css">
+
+</head>
+<body class="page-full">
+<a class="skip" href="#qz-root">Skip to content</a>
+<a class="home-link" href="index.html" aria-label="All Quezt screens"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>All screens</a>
+<div id="qz-root" class="full"></div>
+<template id="qz-tpl">
+
+<div class="qz {{theme}}" style="min-height: 1000px; display: flex; flex-wrap: wrap;">
+  <div style="flex: 1 1 240px;"><dc-import name="Sidebar" active="players" env="production" dark="{{dark}}" hint-size="100%,1000px"></dc-import></div>
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 24px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 12px;"><h1 class="h1">Players</h1><span class="chip chip-live">Production</span></div>
+      <button class="btn btn-secondary" type="button">Export players (CSV)</button>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start;">
+      <!-- List -->
+      <section class="card" style="flex: 999 1 420px; min-width: 0; padding: 0;" aria-label="Player list">
+        <div style="padding: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <label for="ps" style="position: absolute; width: 1px; height: 1px; overflow: hidden;">Search by external ID or alias</label>
+          <input class="input" id="ps" type="search" placeholder="Search by external ID or alias" style="flex: 1 1 220px; width: auto;">
+          <select class="input" aria-label="Level" style="width: 140px;"><option>All levels</option></select>
+        </div>
+        <div class="table-box"><table class="table">
+          <thead><tr><th>Alias</th><th>External ID</th><th>Level</th><th>XP</th><th>Last seen</th></tr></thead>
+          <tbody>
+            <tr class="sel"><td style="font-weight: 600;">Lucky Fox 42</td><td class="mono">usr_8f21</td><td>Level 2</td><td>240</td><td class="muted">2 min ago</td></tr>
+            <tr><td style="font-weight: 600;">Blue Owl 7</td><td class="mono">usr_1c09</td><td>Level 3</td><td>612</td><td class="muted">9 min ago</td></tr>
+            <tr><td style="font-weight: 600;">Swift Lynx 18</td><td class="mono">usr_77ab</td><td>Level 1</td><td>80</td><td class="muted">1 h ago</td></tr>
+            <tr><td style="font-weight: 600;">Quiet Bear 3</td><td class="mono">usr_a410</td><td>Level 2</td><td>355</td><td class="muted">Yesterday</td></tr>
+            <tr><td style="font-weight: 600;">Red Kite 61</td><td class="mono">usr_0d5e</td><td>Level 4</td><td>1,120</td><td class="muted">2 days ago</td></tr>
+          </tbody>
+        </table></div>
+        <p class="caption" style="padding: 12px 16px;">Only external IDs are stored. No names or emails (GDPR).</p>
+      </section>
+
+      <!-- Profile + support -->
+      <section style="flex: 1 1 360px; max-width: 440px; display: flex; flex-direction: column; gap: 16px;" aria-label="Player profile">
+        <div class="card" style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;"><div style="display: flex; flex-direction: column;"><span class="h2">Lucky Fox 42</span><span class="mono muted">usr_8f21</span></div><span class="chip">Level 2</span></div>
+          <div class="bar"><span style="width: 48%;"></span></div>
+          <span class="muted">240 / 500 XP · 3 badges · rank #14 weekly</span>
+        </div>
+
+        <div class="card" style="display: flex; flex-direction: column; gap: 12px;">
+          <h2 class="title">Adjust XP</h2>
+          <div style="display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 12px;">
+            <div><label class="label" for="amt">Amount</label><input class="input" id="amt" value="+100"></div>
+            <div><label class="label" for="note">Note (required)</label><input class="input err" id="note" placeholder="Why are you changing this?" aria-describedby="note-err"><p class="err-text" id="note-err">Add a note. Every manual change is saved in the audit log.</p></div>
+          </div>
+          <button class="btn btn-primary" type="button" aria-disabled="true" style="align-self: flex-start;">Save adjustment</button>
+        </div>
+
+        <div class="card" style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;"><h2 class="title">Ledger</h2><span class="caption">Never edited, like a bank statement</span></div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; gap: 8px;"><span style="display: flex; flex-direction: column;"><span>Mission "Play 5 rounds"</span><span class="caption">grant · campaign v4 · today 14:02</span></span><b style="color: var(--success);">+50 XP</b></div>
+            <div style="display: flex; justify-content: space-between; gap: 8px;"><span style="display: flex; flex-direction: column;"><span>Order #1043 refunded (50%)</span><span class="caption">reversal · automatic · Nov 14</span></span><b style="color: var(--danger);">−25 XP</b></div>
+            <div style="display: flex; justify-content: space-between; gap: 8px;"><span style="display: flex; flex-direction: column;"><span>Support fix: missed event</span><span class="caption">manual · Lusine · "Event lost during outage" · Nov 12</span></span><b style="color: var(--success);">+40 XP</b></div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="btn btn-secondary btn-sm" type="button">Export data (GDPR)</button>
+          <button class="btn btn-ghost btn-sm" type="button" style="color: var(--danger);">Delete player…</button>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    return { dark, theme: dark ? 'dark' : '' };
+  }
+}
+</script>
+<script src="js/dc.js"></script>
+</body>
+</html>

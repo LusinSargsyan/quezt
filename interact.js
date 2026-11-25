@@ -73,6 +73,7 @@
       if (d.brand) props.brand = d.brand;
       if (d.dark) props.c2 = d.dark;
       if (d.light) props.c3 = d.light;
+      if (d.palette) props.palette = d.palette;
       window.QZ.setMany(props);
       if (window.QZsaveSite) window.QZsaveSite(d);
       toast('Imported from ' + d.site + ': ' + [d.brand, d.font].filter(Boolean).join(' · '));
@@ -83,7 +84,13 @@
 
   function mapped(el, text) {
     const t = text.toLowerCase();
-    if (/^re-import$/.test(t)) { importBrand(el); return ''; }
+    if (/^(re-)?import$/.test(t)) { importBrand(el); return ''; }
+    const pick = t.match(/^use (#[0-9a-f]{6})$/i);
+    if (pick) {
+      const hex = pick[1].toUpperCase(); set('brand', hex);
+      try { const st = JSON.parse(localStorage.getItem('qz:site') || 'null'); if (st) { st.brand = hex; localStorage.setItem('qz:site', JSON.stringify(st)); } } catch (e) {}
+      return 'Primary color set to ' + hex + ' — widget updated';
+    }
     if (/^numbers only/.test(t)) { set('icons', false); return 'Levels show numbers'; }
     if (/^with icons/.test(t)) { set('icons', true); return 'Levels show icons'; }
     if (/^open rewards/.test(t)) { set('open', true); return ''; }
@@ -264,8 +271,36 @@
     document.head.appendChild(st); document.body.appendChild(bar);
   }
   buildSiteBar();
+  { const d0 = getSite(); if (d0 && d0.font) loadFont(d0.font); }
   new MutationObserver(applySite).observe(root, { childList: true });
   applySite();
+
+
+  /* ---------- Properties / Preview switch (Campaign editor) → live widget preview ---------- */
+  function previewSwitch(el, text) {
+    const t = text.toLowerCase();
+    if (t !== 'preview' && t !== 'properties') return;
+    const panel = el.closest('aside'); if (!panel) return;
+    const head = el.closest('.seg').parentElement;
+    const fields = Array.from(panel.children).filter((c) => c !== head && !c.classList.contains('qz-preview'));
+    let box = panel.querySelector('.qz-preview');
+    if (t === 'preview') {
+      if (!box) {
+        box = document.createElement('div'); box.className = 'qz-preview';
+        box.style.cssText = 'display:flex;flex-direction:column;gap:8px;align-items:center';
+        box.innerHTML = '<div class="qz-preview-frame" style="width:100%;overflow:hidden;border-radius:16px;box-shadow:var(--shadow-md)"><iframe src="WMissions.html?embed" title="Widget preview" style="width:400px;height:760px;border:0;transform-origin:0 0;display:block"></iframe></div>' +
+          '<a href="WMissions.html" style="font-size:13px;font-weight:600">Open full widget →</a>';
+        panel.appendChild(box);
+      }
+      fields.forEach((f) => { if (!('qzDisp' in f.dataset)) f.dataset.qzDisp = f.style.display; f.style.display = 'none'; });
+      box.style.display = 'flex';
+      const fr = box.querySelector('.qz-preview-frame'), ifr = fr.querySelector('iframe');
+      const k = Math.min(1, fr.clientWidth / 400);
+      ifr.style.transform = 'scale(' + k + ')'; fr.style.height = Math.round(760 * k) + 'px';
+    } else {
+      fields.forEach((f) => { if ('qzDisp' in f.dataset) f.style.display = f.dataset.qzDisp; }); if (box) box.style.display = 'none';
+    }
+  }
 
   root.addEventListener('click', (e) => {
     const el = e.target.closest('button, a, [role="radio"], [role="option"], [role="tab"], .seg > span');
@@ -277,13 +312,13 @@
     if (el.getAttribute('aria-disabled') === 'true') { toast('Disabled — fill the required fields first'); return; }
     const m = mapped(el, text);
     if (m !== null) { if (m) toast(m); return; }
-    if (trySelect(el)) return;
+    if (trySelect(el)) { previewSwitch(el, text); return; }
     if (route(text)) return;
     toast((text ? '“' + text + '” — ' : '') + 'done ✓ (demo)');
   });
 
   root.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && e.target.id === 'url') { e.preventDefault(); const b = Array.from(root.querySelectorAll('button')).find((x) => /re-import/i.test(x.textContent)); if (b) importBrand(b); }
+    if (e.key === 'Enter' && e.target.id === 'url') { e.preventDefault(); const b = Array.from(root.querySelectorAll('button')).find((x) => /^\s*(re-)?import\s*$/i.test(x.textContent)); if (b) importBrand(b); }
   });
 
   /* brand hex field in Theme studio → live brand + contrast check */

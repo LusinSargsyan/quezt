@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600&display=swap">
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@500,600&display=swap">
 <link rel="stylesheet" href="quezt.css">
+<link rel="stylesheet" href="player.css">
 <link rel="stylesheet" href="site.css">
 
 </head>
@@ -30,12 +31,36 @@
     <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start;">
       <!-- Controls -->
       <section style="flex: 1 1 360px; max-width: 460px; display: flex; flex-direction: column; gap: 20px;" aria-label="Theme settings">
+        <div class="card" style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; flex-direction: column; gap: 2px;"><label class="label" for="url" style="margin: 0;">Import from your website</label><span class="muted" style="font-size: 13px;">Paste any link. We take the logo, colors, font and name.</span></div>
+          <div style="display: flex; gap: 8px;">
+            <input class="input" id="url" value="{{site}}" placeholder="yourbrand.com" inputmode="url" autocomplete="url" style="flex: 1; min-width: 0;">
+            <button class="btn btn-primary" type="button">Import</button>
+          </div>
+          <template data-sc="if" value="{{imported}}">
+            <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 4px; border-top: 1px solid var(--border-default);">
+              <div style="display: flex; gap: 12px; align-items: center; padding-top: 10px;">
+                <span style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--border-default); background: #fff; display: grid; place-items: center; overflow: hidden; flex: none;"><template data-sc="if" value="{{logo}}"><img src="{{logo}}" alt="{{brandName}} logo" style="max-width: 36px; max-height: 36px; object-fit: contain;"></template><template data-sc="if" value="{{noLogo}}"><span class="caption">logo</span></template></span>
+                <span style="display: flex; flex-direction: column; min-width: 0;"><b style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{brandName}}</b><span class="muted" style="font-size: 13px;">{{siteHost}} · Font: {{font}}</span></span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <span class="caption">COLORS FROM THE SITE · CLICK TO USE</span>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <template data-sc="for" list="{{swatches}}" as="s">
+                    <button type="button" class="swatch-btn" aria-label="Use {{s.hex}}" aria-pressed="{{s.on}}" title="{{s.hex}}" style="width: 36px; height: 36px; border-radius: 10px; background: {{s.hex}}; border: 2px solid {{s.ring}}; box-shadow: inset 0 0 0 2px #fff; cursor: pointer; padding: 0;"></button>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+
         <div>
           <p class="label">Preset</p>
           <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;">
-            <button class="btn btn-secondary" type="button" style="border: 2px solid var(--accent); background: var(--accent-subtle); color: var(--accent);">Clean</button>
+            <button class="btn btn-secondary" type="button" style="border: 2px solid var(--accent); background: var(--accent-subtle); color: var(--accent);">Night</button>
+            <button class="btn btn-secondary" type="button">Clean</button>
             <button class="btn btn-secondary" type="button">Playful</button>
-            <button class="btn btn-secondary" type="button">Dark</button>
           </div>
         </div>
 
@@ -57,9 +82,9 @@
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
-          <div><label class="label" for="font">Font</label><select class="input" id="font"><option>Satoshi (Fontshare)</option><option>General Sans</option><option>Your site font</option></select></div>
-          <div><label class="label" for="rad">Corner radius · 10 px</label><input id="rad" type="range" min="0" max="16" value="10" style="width: 100%; height: 40px; accent-color: var(--accent);"></div>
-          <div><label class="label" for="mode">Mode</label><select class="input" id="mode"><option>Light</option><option>Dark</option><option>Follow site</option></select></div>
+          <div><label class="label" for="font">Font</label><select class="input" id="font"><template data-sc="if" value="{{imported}}"><option selected>{{font}} (from site)</option></template><option>Satoshi (Fontshare)</option><option>General Sans</option><option>Your site font</option></select></div>
+          <div><label class="label" for="rad">Corner radius · 20 px</label><input id="rad" type="range" min="0" max="24" value="20" style="width: 100%; height: 40px; accent-color: var(--accent);"></div>
+          <div><label class="label" for="mode">Mode</label><select class="input" id="mode"><option>Night</option><option>Clean (light)</option><option>Follow site</option></select></div>
           <div><label class="label" for="pos">Launcher position</label><select class="input" id="pos"><option>Bottom right</option><option>Bottom left</option><option>Inline only</option></select></div>
         </div>
 
@@ -78,34 +103,60 @@
       <!-- Preview -->
       <section style="flex: 999 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px;" aria-label="Live preview">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;"><span class="caption">LIVE PREVIEW · SAMPLE PLAYER (240 XP)</span><div class="seg"><span class="on">Desktop</span><span>Mobile</span></div></div>
-        <div style="border-radius: 16px; border: 1px solid var(--border-default); background: var(--bg-subtle); padding: 32px; display: flex; justify-content: flex-end; min-height: 560px;">
-          <div class="w" style="--w-brand: {{brand}}; --w-on-brand: {{onBrand}}; width: 360px; max-width: 100%; border-radius: 16px; box-shadow: var(--shadow-lg); padding: 20px; display: flex; flex-direction: column; gap: 16px; align-self: flex-start;">
-            <div style="display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 700; font-size: 16px;">Your Brand Rewards</span><span class="w-pill">1,240 pts</span></div>
-            <div class="w-tabs"><span class="w-tab" style="background: var(--w-surface); color: var(--w-text);">Missions</span><span class="w-tab">Badges</span><span class="w-tab">Ranks</span></div>
-            <div class="w-card" style="display: flex; flex-direction: column; gap: 8px;">
-              <div style="display: flex; justify-content: space-between; align-items: baseline;"><span class="w-title">Level 2</span><span class="w-muted" style="font-size: 13px;">240 / 500 XP</span></div>
-              <div class="w-bar"><span style="width: 48%;"></span></div>
-              <span class="w-muted" style="font-size: 13px;">260 XP to Level 3 · unlocks a coupon</span>
-            </div>
-            <div class="w-card" style="display: flex; justify-content: space-between; align-items: center; padding: 12px;"><span style="display: flex; flex-direction: column;"><b>Play 5 rounds</b><span class="w-muted" style="font-size: 13px;">+50 XP · resets at midnight</span></span><span class="w-pill">3 / 5</span></div>
-            <a class="w-btn" href="#">View all missions</a>
+        <div style="position: relative; height: 620px; border-radius: 16px; border: 1px solid var(--border-default); background: #f4f3f7; overflow: hidden;">
+          <div aria-hidden="true" style="position: absolute; inset: 0; padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 700; font-size: 12px; color: #5e5b6b;">{{siteHost}}</span><span style="width: 80px; height: 8px; border-radius: 4px; background: #dcd9e4;"></span></div>
+            <div style="height: 120px; border-radius: 10px; background: #e2e0e8;"></div>
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px;"><div style="height: 70px; border-radius: 8px; background: #e9e7ee;"></div><div style="height: 70px; border-radius: 8px; background: #e9e7ee;"></div><div style="height: 70px; border-radius: 8px; background: #e9e7ee;"></div></div>
+          </div>
+          <div class="qp" style="--qz-w-brand: {{brand}}; --qz-w-on-brand: {{onBrand}}; font-family: {{wfont}}; position: absolute; right: 16px; bottom: 16px; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; background: transparent;">
+            <section role="dialog" aria-label="Rewards preview" style="position: relative; width: 340px; max-width: calc(100% - 0px); background: var(--qz-w-surface); border-radius: 24px; box-shadow: var(--shadow-panel); display: flex; flex-direction: column;">
+              <span aria-hidden="true" style="position: absolute; right: 40px; bottom: -7px; width: 16px; height: 16px; background: var(--qz-w-surface); transform: rotate(45deg); border-radius: 3px;"></span>
+              <header style="display: flex; justify-content: space-between; align-items: center; padding: 12px 10px 6px 16px;">
+                <span style="font-weight: 800; font-size: 15px;">{{brandName}} Rewards</span>
+                <span style="display: flex; gap: 6px; align-items: center;"><span class="qp-chip qp-chip-xp" style="height: 26px;">1,240 pts</span><span class="qp-icon-btn" aria-hidden="true" style="min-width: 36px; height: 36px; padding: 0;"><svg class="qp-ico" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M6 6l12 12M18 6L6 18"></path></svg></span></span>
+              </header>
+              <div style="padding: 4px 12px 14px; display: flex; flex-direction: column; gap: 8px;">
+                <div class="qp-tabs" style="padding: 3px;"><span class="qp-tab is-on" style="height: 32px; font-size: 13px;">Missions</span><span class="qp-tab" style="height: 32px; font-size: 13px;">Badges</span><span class="qp-tab" style="height: 32px; font-size: 13px;">Ranks</span></div>
+                <div style="background: var(--qz-w-brand); color: var(--qz-w-on-brand); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 6px;">
+                  <div style="display: flex; justify-content: space-between; align-items: baseline;"><span class="qp-display" style="font-size: 22px; line-height: 26px;">Level 2</span><b class="qp-num" style="font-size: 16px;">240 / 500 XP</b></div>
+                  <div style="height: 8px; border-radius: 999px; background: rgba(255,255,255,.22); overflow: hidden;"><span style="display: block; width: 48%; height: 100%; border-radius: 999px; background: var(--qz-w-cta);"></span></div>
+                  <span style="opacity: .9; font-size: 13px;">260 XP to Level 3 → coupon</span>
+                </div>
+                <div class="qp-card qp-row" style="padding: 10px 12px; gap: 8px;"><span style="flex: 1; display: flex; flex-direction: column;"><b style="font-size: 14px;">Play 5 rounds</b><span class="qp-muted" style="font-size: 12px;">3 / 5 · resets at midnight</span></span><span class="qp-chip qp-chip-xp" style="height: 24px;">+50 XP</span></div>
+                <div class="qp-card qp-row" style="padding: 10px 12px; gap: 8px;"><span style="flex: 1; display: flex; flex-direction: column;"><b style="font-size: 14px;">Try a new game</b><span class="qp-muted" style="font-size: 12px;">0 / 1</span></span><span class="qp-chip qp-chip-xp" style="height: 24px;">+50 XP</span></div>
+                <span class="qp-btn qp-btn-sm" style="margin-top: 2px;">See all rewards</span>
+              </div>
+            </section>
+            <span class="qp-btn qp-btn-brand" style="height: 48px; padding: 0 18px 0 14px; font-size: 14px; box-shadow: var(--shadow-glow);"><svg class="qp-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>Rewards · 1,240 pts</span>
           </div>
         </div>
+        <p class="help" style="margin: 0;">Shown on a sample page. Players open it from the launcher; it never covers your site until they do.</p>
       </section>
     </div>
   </main>
 </div>
 </template>
-<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"brand":{"editor":"color","default":"#6B3FA0","options":["#6B3FA0","#0F766E","#1D4ED8","#F59E0B"]},"$preview":{"width":1440,"height":1000}}'>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"site":{"editor":"text","default":""},"brandName":{"editor":"text","default":"Your Brand"},"logo":{"editor":"text","default":""},"font":{"editor":"text","default":"Satoshi"},"c2":{"editor":"text","default":""},"c3":{"editor":"text","default":""},"palette":{"editor":"text","default":""},"brand":{"editor":"color","default":"#6D4DFF","options":["#6D4DFF","#0F766E","#1D4ED8","#F59E0B"]},"$preview":{"width":1440,"height":1000}}'>
 class Component extends DCLogic {
   lum(hex) {
-    const h = (hex || '#6B3FA0').replace('#', '');
+    const h = (hex || '#6D4DFF').replace('#', '');
     const c = [0, 2, 4].map((i) => parseInt(h.substr(i, 2), 16) / 255).map((v) => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
     return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
   }
+  site(brand) {
+    const p = this.props, site = p.site || '';
+    const host = site.replace(/^https?:\/\//, '').replace(/\/.*$/, '').replace(/^www\./, '');
+    const pal = [].concat(Array.isArray(p.palette) ? p.palette : [], [p.brand, p.c2, p.c3]).filter((h) => /^#[0-9a-f]{6}$/i.test(h || ''));
+    const uniq = [...new Set(pal.map((h) => h.toUpperCase()))].slice(0, 8);
+    const font = p.font || 'Satoshi';
+    return { site, imported: !!site, siteHost: host || 'yourbrand.com', brandName: p.brandName || 'Your Brand', logo: p.logo || '', noLogo: !p.logo, font,
+      wfont: '"' + font + '", "Satoshi", "Noto Sans", system-ui, sans-serif',
+      swatches: uniq.map((hex) => ({ hex, on: String(hex === (brand || '').toUpperCase()), ring: hex === (brand || '').toUpperCase() ? 'var(--accent)' : 'var(--border-default)' })) };
+  }
   renderVals() {
     const dark = this.props.dark ?? false;
-    const brand = this.props.brand ?? '#6B3FA0';
+    const brand = this.props.brand ?? '#6D4DFF';
     const L = this.lum(brand);
     const onWhite = 1.05 / (L + 0.05);
     const onBlack = (L + 0.05) / (0.0 + 0.05);
@@ -115,7 +166,8 @@ class Component extends DCLogic {
       dark, theme: dark ? 'dark' : '', brand,
       ratio, passes, fails: !passes,
       onBrand: onWhite >= onBlack ? '#FFFFFF' : '#0F0E17',
-      onBrandName: onWhite >= onBlack ? 'white (auto)' : 'near-black (auto)'
+      onBrandName: onWhite >= onBlack ? 'white (auto)' : 'near-black (auto)',
+      ...this.site(brand)
     };
   }
 }

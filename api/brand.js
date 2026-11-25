@@ -94,6 +94,13 @@ module.exports = async (req, res) => {
     const byL = colors.slice(0, 40).map(([c]) => [c, hsl(hexToRgb(c)).l]);
     const dark = (byL.filter(([, l]) => l < 0.25)[0] || ['#18171F'])[0];
     const light = (byL.filter(([, l]) => l > 0.9)[0] || ['#F7F6FA'])[0];
+    // palette: up to 6 distinct, saturated brand colors (most used first)
+    const palette = [];
+    for (const [c] of saturated) {
+      const [r, g, bb] = hexToRgb(c);
+      if (palette.every((p) => { const [r2, g2, b2] = hexToRgb(p); return Math.abs(r - r2) + Math.abs(g - g2) + Math.abs(bb - b2) > 60; })) palette.push(c);
+      if (palette.length >= 6) break;
+    }
     const nameTag = html.match(/<meta[^>]+property=["']og:site_name["'][^>]*>/i);
     const title = (html.match(/<title[^>]*>([^<]{1,80})/i) || [])[1];
     const name = (nameTag && attr(nameTag[0], 'content')) || (title ? title.split(/[|\-–—:]/)[0].trim() : u.hostname.replace(/^www\./, ''));
@@ -101,7 +108,7 @@ module.exports = async (req, res) => {
     res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate');
     return res.status(200).json({
       site: u.hostname.replace(/^www\./, ''), name, logo: pickLogo(html, base),
-      brand, dark, light, font: pickFont(html, css), colorsFound: colors.length
+      brand, dark, light, palette, font: pickFont(html, css), colorsFound: colors.length
     });
   } catch (e) {
     return res.status(504).json({ error: 'QZ-BRD-003', message: `${u.hostname} took too long to answer. Try again, or set your brand in Theme studio.` });
